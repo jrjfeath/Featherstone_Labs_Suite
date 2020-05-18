@@ -4,14 +4,19 @@ A suite of tools coded for python versions 3.6+ for analyzing gaussian input and
 The various tab features are explained below.
 --Modifying Tools--
 Modify Input Files:
+
 -Used to edit .gjf files in a directory, the new inputs are written to a sub folder as to not overwrite orginal files.
+
 -Pulls defaults from preferences tab. 
+
 -For rwf, scr, and chk options you can select to run with the following options:
   1. Save none of these files (do not save)
   2. Write these files to the same directory that the input is submitted in (same)
   3. In the same directory and then deleted once the job finishes (same and nosave)
   4. Write these files to a directory in your /Scratch/$username/X (where X is chk, rwf, or scr) if that is supported.
+  
 -Footer info is anything you want appened below the xyz coordinates. This is generally additional basis set information grabbed from https://www.basissetexchange.org/
+
 -You can select to keep the footer information already present in the input file, i.e connectivity, and append new footer data after this chunk (append) or overwrite the data.
 
 Convert Output to Input:
