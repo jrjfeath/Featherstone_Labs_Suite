@@ -1,6 +1,7 @@
 #Tab 1
 from Input_Generator import extract_input
 from rename import rename_files
+from mass_weighted_comparison import determine_similarity
 
 #Tab 2
 from SPE import Extract_SPE
@@ -23,7 +24,7 @@ def submit_button(self):
         if ct_index == 2:
             rename_files(self)
         if ct_index == 3:
-            pass
+            determine_similarity(self)
     if pt_index == 1:
         ct_index = self.ui.tabWidget_3.currentIndex()
         if ct_index == 0:
