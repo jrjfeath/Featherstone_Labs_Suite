@@ -79,7 +79,7 @@ class AppWindow(QtWidgets.QMainWindow):
         self.close_application() #Call the exit prompt
 
     def Update(self,Launch):
-        repo_url = 'https://github.com/octocat/Hello-World'
+        repo_url = 'https://github.com/jrjfeath/Feather_Labs_Suite'
         
         #Delete temp directory or git download fails
         try: shutil.rmtree(f'{Root_Path(self)}/Temp')
@@ -101,8 +101,6 @@ class AppWindow(QtWidgets.QMainWindow):
         #Safely find top directory of github files
         subdir=os.path.split(Path)[0]
         topdir=os.path.split(subdir)[0]
-
-        print()
         
         choice_title = 'Update Available'
         choice_prompt = 'An update is available, would you like to update?'
