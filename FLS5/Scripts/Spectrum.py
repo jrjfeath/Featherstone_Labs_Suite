@@ -1,6 +1,8 @@
 import os
 import re
+
 import xlsxwriter
+
 from SPE import check_file_closed
 
 def spectrum(self):

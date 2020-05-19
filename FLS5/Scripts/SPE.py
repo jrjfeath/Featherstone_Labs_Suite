@@ -1,8 +1,9 @@
-import os
-import sys
-import re
 import fnmatch
+import os
+import re
+import sys
 import time
+
 from shutil import move
 
 def Extract_SPE(self):

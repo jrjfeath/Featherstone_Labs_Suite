@@ -1,10 +1,12 @@
-import numpy as np
 import os
 import re
 import sys
 import time
 
 from math import sqrt
+
+import numpy as np
+
 from Atom_Info import chemical_symbols, atomic_masses_legacy
 from SPE import check_file_closed
 

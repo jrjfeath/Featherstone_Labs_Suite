@@ -1,7 +1,8 @@
 import os
+import time
+
 from math import sin,cos,pi,sqrt
 from shutil import copyfile
-import time
 
 def rotate_gjf(self):
     File = self.ui.t2t4LE_1.text()

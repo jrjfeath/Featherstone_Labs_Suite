@@ -1,5 +1,5 @@
-import re 
 import os
+import re 
 
 def rename_files(self):
     directory = self.check_directory(self.ui.t1t3le_1.text())

@@ -1,8 +1,8 @@
+import fnmatch
+import math
 import os
 import re
-import fnmatch
 import time
-import math
 from SPE import check_file_closed
 
 def Extract_Thermo(self):
