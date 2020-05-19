@@ -9,9 +9,6 @@ A suite of tools coded for python versions 3.6+ for analyzing gaussian input and
   - xlsxwriter
   - gitpython
 
-
-The various tab features are explained below.
-
 ## Modifying Tools
 
 ### Modify Input Files:
@@ -78,7 +75,8 @@ The various tab features are explained below.
 
 ### Geometry and Parameters:
 
-- Extract the geometry data and other various parameters from an optimization. It will arrange your files in a mass weighted spreadsheet with trailing zeroes. 
+- Extract the geometry data and other various parameters from an optimization into two files for each input.
+- Creates two files comparing the mass weighted co-ordinate data for all inputs in the directory.
 
 ## Preferences
 
