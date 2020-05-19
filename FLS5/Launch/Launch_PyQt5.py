@@ -82,7 +82,9 @@ class AppWindow(QtWidgets.QMainWindow):
         repo_url = 'https://github.com/octocat/Hello-World'
         
         #Delete temp directory or git download fails
-        shutil.rmtree(f'{Root_Path(self)}/Temp')
+        try: shutil.rmtree(f'{Root_Path(self)}/Temp')
+        except FileNotFoundError: pass 
+        #Try to download github repo
         try: repo = git.Repo.clone_from(repo_url, f'{Root_Path(self)}/Temp', branch='master')
         except: #Not sure of actual except handle
             self.ui.Console.setPlainText('Unable to access github, do you have an internet connection?')
