@@ -43,7 +43,7 @@ class AppWindow(QtWidgets.QMainWindow):
             #font.setWeight(50)
             self.ui.centralwidget.setFont(font)
         self.show()
-        #self.Update(0)
+        self.Update(0)
 
     def file_open(self, file_type):
         name = QtWidgets.QFileDialog.getOpenFileName(self, 'Open File','',file_type)
@@ -85,7 +85,7 @@ class AppWindow(QtWidgets.QMainWindow):
         self.close_application() #Call the exit prompt
 
     def Update(self,Launch):
-        repo_url = 'https://github.com/jrjfeath/Feather_Labs_Suite'
+        repo_url = 'https://github.com/jrjfeath/Featherstone_Labs_Suite'
         
         #Delete temp directory or git download fails
         try: shutil.rmtree(f'{Root_Path(self)}/Temp')
