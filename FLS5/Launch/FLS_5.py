@@ -605,7 +605,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Feather Labs Suite 1.0.0"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Featherstone Labs Suite 1.0.0"))
         self.t1l1.setText(_translate("MainWindow", "Directory"))
         self.t1l2.setText(_translate("MainWindow", "Checkpoint File"))
         self.t1l3.setText(_translate("MainWindow", "Scratch File"))
@@ -762,7 +762,7 @@ class Ui_MainWindow(object):
 "# freq b3lyp/6-311++G(d,p)\n"
 "# opt freq b3lyp/6-311++G(d,p)"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Preferences"))
-        self.Console.setPlainText(_translate("MainWindow", "Welcome to the latest edition of Feather Labs Suite!\n"
+        self.Console.setPlainText(_translate("MainWindow", "Welcome to the latest edition of Featherstone Labs Suite!\n"
 "This suite of programs was developed for use with Gaussian calculations.\n"
 "This program can be updated by selecting: \"Check for updates\" under \"File\" in the menu.\n"
 "Any recommendations, errors, or concerns should be submitted at: \n"
