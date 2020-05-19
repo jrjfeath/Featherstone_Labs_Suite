@@ -1,6 +1,15 @@
 # Feather_Labs_Suite
 A suite of tools coded for python versions 3.6+ for analyzing gaussian input and output files.
 
+## Installation
+
+- Prerequisites, will prompt for install on first launch.
+  - pyqt5
+  - numpy
+  - xlsxwriter
+  - gitpython
+
+
 The various tab features are explained below.
 
 ## Modifying Tools
