@@ -34,6 +34,7 @@ class AppWindow(QtWidgets.QMainWindow):
         GUI_Calls(self) 
         self.ui.t2t4PB_1.clicked.connect(lambda: self.file_open('*.gjf'))
         self.ui.action_Check_for_updates.triggered.connect(lambda: self.Update(1))
+        self.ui.t2t2CB_3.currentIndexChanged.connect(lambda: self.enable_relative())
         Root = os.getenv('APPDATA')
         if Root == None:
             font = QtGui.QFont()
@@ -42,16 +43,16 @@ class AppWindow(QtWidgets.QMainWindow):
             #font.setWeight(50)
             self.ui.centralwidget.setFont(font)
         self.show()
-        #print(os.path.realpath(__file__))
-        self.Update(0)
+        #self.Update(0)
 
     def file_open(self, file_type):
         name = QtWidgets.QFileDialog.getOpenFileName(self, 'Open File','',file_type)
-        if len(name) > 1: #Linux is funky
+        if len(name) > 1: #Linux stores name in tuple
             name = name[0]
         self.ui.t2t4LE_1.setText(name)
 
     def mousePressEvent(self, event):
+        #If user enters new basis update dropdown
         focused_widget = QtWidgets.QApplication.focusWidget()
         if focused_widget == self.ui.t3PPTE_1:
             set_basis(self)
@@ -60,6 +61,11 @@ class AppWindow(QtWidgets.QMainWindow):
         except AttributeError:
             pass
         QtWidgets.QMainWindow.mousePressEvent(self, event)
+
+    def enable_relative(self):
+        '''Only allow relative energies if sorting by energy.'''
+        if self.ui.t2t2CB_3.currentIndex() != 0: self.ui.t2t2CB_4.setEnabled(True)
+        else:self.ui.t2t2CB_4.setEnabled(False)
 
     def check_directory(self, directory):
         directory = directory.strip()

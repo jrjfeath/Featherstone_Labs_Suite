@@ -5,8 +5,6 @@ import fnmatch
 import time
 from shutil import move
 
-Version = 2.0
-
 def Extract_SPE(self):
     directory = self.check_directory(self.ui.t2t1LE_1.text())
     if directory:
@@ -115,15 +113,17 @@ def extract(self,Type,files,directory):
             if os.path.isdir(os.path.join(directory,'Uniques')) == False:
                 os.mkdir(os.path.join(directory,'Uniques'))
             directory = os.path.join(directory,'Uniques')
+        min_e = Ordered[0][0] #fetch minimum energy
         Filename = Type+'_Energies'
         csvname = check_file_closed(os.path.join(directory,Filename),'.csv')
         opf = open(csvname,'w')
+        opf.write('Filename,Electronic Energy,Relative Energy (kJ/mol)\n')
         for i in Ordered: 
             #If user is not searching recursively
             if self.ui.t2t1CB_2.currentIndex() == 0:
-                opf.write(os.path.basename(i[1])+','+str(i[0])+'\n')
+                opf.write(f'{os.path.basename(i[1])},{i[0]},{(i[0]-min_e)*2625.5}\n')
             else:
-                opf.write(i[1]+','+str(i[0])+'\n')
+                opf.write(f'{i[1]},{i[0]},{(i[0]-min_e)*2625.5}\n')
             #If the user selected to move files, only move files if it is not recursive
             if self.ui.t2t1CB_3.currentIndex() == 1 and self.ui.t2t1CB_2.currentIndex() == 0: 
                 nl = os.path.join(directory,os.path.basename(i[1]))

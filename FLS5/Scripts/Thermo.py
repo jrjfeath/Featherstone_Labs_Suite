@@ -18,30 +18,31 @@ def Extract_Thermo(self):
                 for filename in fnmatch.filter(filenames, '*.log'):
                     files.append(os.path.join(root, filename))
         if self.ui.t2t2CB_1.currentIndex() == 0:
-            type = 'Completed'
+            Type = 'Completed'
         else:
-            type = 'All'
+            Type = 'All'
         if len(files) > 0:
-            extract(self,type,files,directory)
+            extract(self,Type,files,directory)
         else:
             self.ui.Console.setPlainText('No output files in specified directory.')
     else:
         self.ui.Console.setPlainText('Invalid directory')
         
-def extract(self,type,files,directory):
+def extract(self,Type,files,directory):
     CInfo = 'Starting extraction process for thermochemical data.\n'
     self.ui.Console.setPlainText(CInfo)
-    String = ''
+    
+    Thermo_Data = {}
     Ping = time.time()
     for i in range(len(files)):
-        if time.time()-Ping > 0.1:
+        if time.time()-Ping > 1.0: #only update once a second
             self.ui.progressBar.setValue((i)/len(files)*100)
             Ping = time.time()
         openfile = open(files[i],'r')
         text = openfile.read()
         openfile.close()
         Thermo_Pass = []
-        if type == 'Completed': #If user does not want to use failed jobs
+        if Type == 'Completed': #If user does not want to use failed jobs
             if 'Normal termination' in text:
                 Thermo_Pass = re.findall(r'- Thermochemistry(.*?)\n',text) #Check if file has thermochemistry
         else:
@@ -71,19 +72,64 @@ def extract(self,type,files,directory):
             IMG = re.findall(r'imaginary frequencies',text)
             if len(IMG) > 0: IMG = 'Yes' 
             else: IMG = 'No'
-            
-            #Write the data to the file
-            format_line = '{:s},{:s},{:s},{:f},{:f},{:f},{:f},{:f},{:f},{:f},{:f},{:f},{:f}\n'
+
+            #If searching recursively attach directory
             if self.ui.t2t2CB_2.currentIndex() == 0: FN = os.path.basename(files[i])
             else: FN = files[i]
-            String += format_line.format(FN,IMG,MP,HF,ZPC,TCN,TCE,TCG,SEZ,SET,SETE,SETF,ET)
-    if String == '': #If no data found
+            
+            #Write data to dictionary
+            Thermo_Data[FN] = [IMG,MP,HF,ZPC,TCN,TCE,TCG,SEZ,SET,SETE,SETF,ET]
+    
+    if len(Thermo_Data) == 0: #If no data found
         CInfo += 'No thermochemical data found in files.'
         self.ui.Console.setPlainText(CInfo)
         self.ui.progressBar.setValue(0)
         return
-    format_line = '{:s},{:s},{:s},{:s},{:s},{:s},{:s},{:s},{:s},{:s},{:s},{:s},{:s}\n'
-    Header = format_line.format("Filename","Imaginary","Multiplicity","Energy","Zero-point correction","Thermal correction to Energy","Thermal correction to Enthalpy","Thermal correction to Gibbs Free Energy","Sum of electronic and zero-point Energies","Sum of electronic and thermal Energies","Sum of electronic and thermal Enthalpies","Sum of electronic and thermal Free Energies","Total S")
+
+    #Sort our dictionary according to option select. k = key, v = key values
+    DPI = self.ui.t2t2CB_3.currentIndex() #Get index of dropdown menu
+    #Always sort by filename, overwrite order later
+    Thermo_Data = {k: Thermo_Data[k] for k in sorted(Thermo_Data)}
+    #If we dont sort by the filename we need to sort by a value in key
+    if DPI == 1: #Electronic Energy (HF)
+        index = 2 #Found above when declaring key values for dict
+    if DPI == 2: #Enthalpy (SETE)
+        index = 9
+    if DPI == 3: #Free Energy (SETF)
+        index = 10
+    if DPI != 0: #If we aren't sorting by filename sort by the selected index
+        Thermo_Data = {k: v for k, v in sorted(Thermo_Data.items(), key=lambda item: item[1][index])}
+
+    #fetch minimum energy values in event user wants relative energies
+    k1 = list(Thermo_Data.keys())[0] #Get the first key
+    #Get the energies from the first key, electron, enthalpy, free energy
+    min_e = [float(Thermo_Data[k1][2]),float(Thermo_Data[k1][9]),float(Thermo_Data[k1][10])]
+
+    #Write the data to a string for file writing
+    String = ''
+    for key in Thermo_Data:
+        String += f'{key},' #write key to string
+        kd = Thermo_Data[key] #fetch key data (kd)
+        for value in kd: String+=f'{value},' #write each value to string
+        String = String[:-1] #Remove trailing comma
+        
+        #If the user selects relative values
+        if DPI != 0 and self.ui.t2t2CB_4.currentIndex() == 1: 
+            String += f',{(float(kd[2])-min_e[0])*2625.5},{(float(kd[9])-min_e[1])*2625.5},{(float(kd[10])-min_e[2])*2625.5}'
+        
+        String+='\n'
+
+    #Header is quite long so it's seperated through multiple additions
+    Header = "Filename,Imaginary,Multiplicity,Energy,"
+    Header +="Zero-point correction,Thermal correction to Energy,"
+    Header +="Thermal correction to Enthalpy,Thermal correction to Gibbs Free Energy,"
+    Header +="Sum of electronic and zero-point Energies,Sum of electronic and thermal Energies,"
+    Header +="Sum of electronic and thermal Enthalpies,Sum of electronic and thermal Free Energies,"
+    Header +="Total S"
+    #If user wants to include relative values
+    if DPI != 0 and self.ui.t2t2CB_4.currentIndex() == 1:
+        Header += ',Relative Electronic (kJ/mol),Relative Enthalpy (kJ/mol),Relative Free Energy (kJ/mol)'
+    Header += '\n'
     csvname = check_file_closed(os.path.join(directory,'Thermo_Data'),'.csv')
     opf = open(csvname,'w')
     opf.write(Header+String)
