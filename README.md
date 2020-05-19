@@ -1,4 +1,4 @@
-# Feather_Labs_Suite
+# Feather Labs Suite
 A suite of tools coded for python versions 3.6+ for analyzing gaussian input and output files.
 
 ## Installation
