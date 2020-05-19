@@ -84,4 +84,4 @@ The various tab features are explained below.
 
 - These are where your default parameters are stored. The file storing these parameters can be found in your appdata folder on windows or your home directory in linux.
 
-Please report all bugs and errors under issues or contact me at jrjfeath@uwaterloo.ca
+Please report all bugs and errors under issues.
