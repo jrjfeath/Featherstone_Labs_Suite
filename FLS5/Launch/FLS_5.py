@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/josh/Dropbox/Python/McMahon_Suite/Launch/McMahon.ui'
+# Form implementation generated from reading ui file '/home/josh/Dropbox/Python/Feather_Labs_Suite/FLS5/Launch/FLS_5.ui'
 #
 # Created by: PyQt5 UI code generator 5.14.2
 #
@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QtCore.QSize(660, 525))
         MainWindow.setMaximumSize(QtCore.QSize(660, 525))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("/home/josh/Dropbox/Python/McMahon_Suite/Launch/../favicon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("/home/josh/Dropbox/Python/Feather_Labs_Suite/FLS5/Launch/../favicon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -762,10 +762,11 @@ class Ui_MainWindow(object):
 "# freq b3lyp/6-311++G(d,p)\n"
 "# opt freq b3lyp/6-311++G(d,p)"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Preferences"))
-        self.Console.setPlainText(_translate("MainWindow", "Welcome to the latest edition of McMahon Suite!\n"
+        self.Console.setPlainText(_translate("MainWindow", "Welcome to the latest edition of Feather Labs Suite!\n"
 "This suite of programs was developed for use with Gaussian calculations.\n"
 "This program can be updated by selecting: \"Check for updates\" under \"File\" in the menu.\n"
-"Any recommendations, errors, or concerns should be sent to: jrjfeath@uwaterloo.ca"))
+"Any recommendations, errors, or concerns should be submitted at: \n"
+"https://github.com/jrjfeath/Feather_Labs_Suite/issues"))
         self.pushButton.setText(_translate("MainWindow", "Submit"))
         self.pushButton.setShortcut(_translate("MainWindow", "Shift+Return"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
