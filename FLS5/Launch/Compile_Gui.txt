@@ -1,0 +1,3 @@
+C:\Python\Python37\Lib\site-packages\PyQt4\pyuic4 "E:\Dropbox\Python\McMahon Suite\Launch\McMahon.ui" -o "E:\Dropbox\Python\McMahon Suite\Launch\McMahon_4.py"
+
+pyuic5 "/home/josh/Dropbox/Python/McMahon_Suite/Launch/McMahon.ui" -o "/home/josh/Dropbox/Python/McMahon_Suite/Launch/McMahon_5.py"
