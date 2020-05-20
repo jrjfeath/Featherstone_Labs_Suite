@@ -2,6 +2,10 @@ import os
 import shutil
 
 import numpy as np
+
+from numpy import dot
+from numpy.linalg import norm
+
 from Rearrange_Molecules import GEOM
 
 def determine_similarity(self):
@@ -32,16 +36,16 @@ def determine_similarity(self):
         mwl.append(mw)
 
     #Grab value specified by the user
-    #100-Value as I found it was more user friendly to ask that way
-    similarity_threshold = (100-self.ui.t1t4dsb_1.value())/100
+    similarity_threshold = self.ui.t1t4dsb_1.value()/100
 
     failed = []
     for index1, mw1 in enumerate(mwl):
         if index1 in failed: continue
         for index2, mw2 in enumerate(mwl):
             if index2 <= index1 or index2 in failed: continue
-            similarity = round(abs(1-np.average(np.array(mw1)/np.array(mw2))),4)
-            if similarity < similarity_threshold:
+            #similarity = round(abs(1-np.average(np.array(mw1)/np.array(mw2))),4)
+            cos_sim = round(dot(mw1, mw2)/(norm(mw1)*norm(mw2)),4)
+            if cos_sim > similarity_threshold:
                 failed.append(index2)
 
     for index in sorted(failed,reverse=True):
