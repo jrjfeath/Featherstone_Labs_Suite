@@ -3,7 +3,7 @@ A suite of tools coded for python versions 3.6+ for analyzing gaussian input and
 
 ## Installation
 
-- Prerequisites, will prompt for install on first launch.
+- Prerequisites, will prompt for install on first launch. Will prompt for immediate update after installation, this is expected behaviour.
   - PyQt5
   - numpy
   - xlsxwriter
