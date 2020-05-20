@@ -2,8 +2,9 @@
 A suite of tools coded for python versions 3.6+ for analyzing gaussian input and output files.
 
 ## Installation
+- Requires that you have github for desktop installed. You do not need to make an account to install the software, just continue hitting next to install it. The download can be found at: https://desktop.github.com/
 
-- Prerequisites, will prompt for install on first launch.
+- Python Prerequisites, will prompt for install on first launch.
   - PyQt5
   - numpy
   - xlsxwriter
