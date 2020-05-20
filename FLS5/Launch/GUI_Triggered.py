@@ -9,6 +9,7 @@ from Thermo import Extract_Thermo
 from Spectrum import spectrum
 from rotate_gjf import rotate_gjf
 from Mass_Properties import Mass_Props
+from Temperature_Analysis import analyze_temperature
 
 #Tab 3
 from Preferences import preferences
@@ -37,6 +38,8 @@ def submit_button(self):
             rotate_gjf(self)
         if ct_index == 4:
             Mass_Props(self)
+        if ct_index == 5:
+            analyze_temperature(self)
     if pt_index == 2:
         preferences(self)
 
