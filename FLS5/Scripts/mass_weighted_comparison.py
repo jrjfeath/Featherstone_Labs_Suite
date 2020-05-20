@@ -43,7 +43,6 @@ def determine_similarity(self):
         if index1 in failed: continue
         for index2, mw2 in enumerate(mwl):
             if index2 <= index1 or index2 in failed: continue
-            #similarity = round(abs(1-np.average(np.array(mw1)/np.array(mw2))),4)
             cos_sim = round(dot(mw1, mw2)/(norm(mw1)*norm(mw2)),4)
             if cos_sim > similarity_threshold:
                 failed.append(index2)

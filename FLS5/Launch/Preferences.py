@@ -13,9 +13,9 @@ def Root_Path():
 
 def preferences(self):
     path = Root_Path()
-    String = str(self.ui.t3PQB_3.currentIndex())+'\n'
+    String = str(self.ui.t3PQB_1.currentIndex())+'\n'
     String += str(self.ui.t3PQB_2.currentIndex())+'\n'
-    String += str(self.ui.t3PQB_1.currentIndex())+'\n'
+    String += str(self.ui.t3PQB_3.currentIndex())+'\n'
     String += str(self.ui.t3PLE_1.text())+'\n'
     String += str(self.ui.t3PQB_4.currentText())+'\n'
     String += str(self.ui.t3PSB_1.value())+'\n'
