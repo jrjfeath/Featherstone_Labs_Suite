@@ -1,16 +1,18 @@
 import os
 
-def Root_Path(self):
+from pathlib import Path
+
+def Root_Path():
     Root = os.getenv('APPDATA')
     if Root == None:
         Root = os.getenv('HOME')
-    Path = os.path.join(Root,'McMahonSuite')
-    if os.path.isdir(Path) == False:
-        os.mkdir(Path)
-    return Path
+    path = os.path.join(Root,'McMahonSuite')
+    if os.path.isdir(path) == False:
+        os.mkdir(path)
+    return Path(path)
 
 def preferences(self):
-    Path = Root_Path(self)
+    path = Root_Path()
     String = str(self.ui.t3PQB_3.currentIndex())+'\n'
     String += str(self.ui.t3PQB_2.currentIndex())+'\n'
     String += str(self.ui.t3PQB_1.currentIndex())+'\n'
@@ -21,17 +23,17 @@ def preferences(self):
     String += str(self.ui.t3PSB_3.value())+'\n'
     String += str(self.ui.t3PSB_4.value())+'\n'
     String += str(self.ui.t3PPTE_1.toPlainText())
-    opf = open(os.path.join(Path,'Preference.txt'),'w')
+    opf = open(os.path.join(path,'Preference.txt'),'w')
     opf.write(String)
     opf.close()
     Load_Preferences(self)
 
 def Load_Preferences(self):
-    Path = Root_Path(self)
+    path = Root_Path()
     #If the user has never launched the program before
-    if os.path.isfile(os.path.join(Path,'Preference.txt')) == False:
+    if os.path.isfile(os.path.join(path,'Preference.txt')) == False:
         preferences(self)
-    opf = open(os.path.join(Path,'Preference.txt'),'r')
+    opf = open(os.path.join(path,'Preference.txt'),'r')
     Lines = opf.readlines()
     opf.close()
     #Set Modify Input Files parameters

@@ -1,8 +1,10 @@
+import errno
 import os
 import shutil
+import stat
 import sys
 
-from subprocess import Popen
+from pathlib import Path
 
 from FLS_5 import Ui_MainWindow
 from GUI_Triggered import GUI_Calls
@@ -14,8 +16,8 @@ from PyQt5 import QtWidgets
 from PyQt5 import QtCore
 from PyQt5 import QtGui
 
-Path = os.path.dirname(os.path.realpath(__file__))
-Icon_Path = os.path.join(os.path.split(Path)[0],'icons')
+path = Path(os.path.dirname(os.path.realpath(__file__)))
+Icon_Path = os.path.join(os.path.split(path)[0],'icons')
 
 class AppWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -86,18 +88,28 @@ class AppWindow(QtWidgets.QMainWindow):
 
     def Update(self,Launch):
         repo_url = 'https://github.com/jrjfeath/Featherstone_Labs_Suite'
+
+        #Windows has special permissions on read-only folders
+        def handleRemoveReadonly(func, path, exc):
+            excvalue = exc[1]
+            if func in (os.rmdir, os.unlink, os.remove) and excvalue.errno == errno.EACCES:
+                os.chmod(path, stat.S_IRWXU| stat.S_IRWXG| stat.S_IRWXO) # 0777
+                func(path)
+            else: #unable to modify folder.
+                pass
         
         #Delete temp directory or git download fails
-        try: shutil.rmtree(f'{Root_Path(self)}/Temp')
+        root = Root_Path()
+        try: shutil.rmtree(Path(f'{root}/Temp'), ignore_errors=False, onerror=handleRemoveReadonly)
         except FileNotFoundError: pass 
         #Try to download github repo
-        try: repo = git.Repo.clone_from(repo_url, f'{Root_Path(self)}/Temp', branch='master')
+        try: repo = git.Repo.clone_from(repo_url, Path(f'{root}/Temp'), branch='master')
         except: #Not sure of actual except handle
             self.ui.Console.setPlainText('Unable to access github, do you have an internet connection?')
             return
         repo_id = repo.head.object.hexsha
 
-        with open(f'{Path}/ID.txt','r') as opf:
+        with open(Path(f'{path}/ID.txt'),'r') as opf:
             local_id = opf.read().strip()
 
         if repo_id == local_id: #If the ids match then no changes
@@ -105,7 +117,7 @@ class AppWindow(QtWidgets.QMainWindow):
             return
 
         #Safely find top directory of github files
-        subdir=os.path.split(Path)[0]
+        subdir=os.path.split(path)[0]
         topdir=os.path.split(subdir)[0]
         
         choice_title = 'Update Available'
@@ -113,8 +125,8 @@ class AppWindow(QtWidgets.QMainWindow):
         choice = QtWidgets.QMessageBox.question(self, choice_title, choice_prompt, QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
         if choice == QtWidgets.QMessageBox.Yes:
             shutil.rmtree(topdir) #Delete old files
-            shutil.move(f'{Root_Path(self)}/Temp',topdir) #Move new files
-            with open(f'{Path}/ID.txt','w') as opf: #Update ID
+            shutil.move(f'{root}/Temp',topdir) #Move new files
+            with open(f'{path}/ID.txt','w') as opf: #Update ID
                 opf.write(repo_id)
             sys.exit() 
 
