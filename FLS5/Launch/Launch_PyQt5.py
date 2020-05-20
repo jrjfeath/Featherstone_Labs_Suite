@@ -2,6 +2,7 @@ import errno
 import os
 import shutil
 import stat
+import subprocess
 import sys
 
 from pathlib import Path
@@ -102,6 +103,7 @@ class AppWindow(QtWidgets.QMainWindow):
         root = Root_Path()
         try: shutil.rmtree(Path(f'{root}/Temp'), ignore_errors=False, onerror=handleRemoveReadonly)
         except FileNotFoundError: pass 
+        
         #Try to download github repo
         try: repo = git.Repo.clone_from(repo_url, Path(f'{root}/Temp'), branch='master')
         except: #Not sure of actual except handle
@@ -124,10 +126,16 @@ class AppWindow(QtWidgets.QMainWindow):
         choice_prompt = 'An update is available, would you like to update?'
         choice = QtWidgets.QMessageBox.question(self, choice_title, choice_prompt, QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
         if choice == QtWidgets.QMessageBox.Yes:
-            shutil.rmtree(topdir) #Delete old files
-            shutil.move(f'{root}/Temp',topdir) #Move new files
-            with open(f'{path}/ID.txt','w') as opf: #Update ID
-                opf.write(repo_id)
+            with open(Path(f'{root}/update.py'),'w') as opf:
+                opf.write('import shutil\n')
+                opf.write('import subprocess\n')
+                opf.write('from distutils.dir_util import copy_tree\n')
+                opf.write(f'shutil.rmtree(r"{topdir}/FLS5",ignore_errors=True)\n') #Delete old files
+                opf.write(f'copy_tree(r"{root}/Temp/FLS5",r"{topdir}/FLS5")\n') #Move new files
+                opf.write(f'with open(r"{path}/ID.txt","w") as opf:\n') #Update ID
+                opf.write(f'   opf.write("{repo_id}")\n')
+                opf.write(f'subprocess.Popen(r"{topdir}/FLS5/Launcher.py",shell=True)')
+            subprocess.Popen(f'{root}/update.py',shell=True)
             sys.exit() 
 
 def main():
