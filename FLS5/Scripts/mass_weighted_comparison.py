@@ -13,6 +13,7 @@ def determine_similarity(self):
 
     mwl = [] #mass weighted coordinate list
     Files = sorted([x for x in os.listdir(directory) if x.endswith('.gjf')])
+    Cinfo = f'Found {len(Files)} .gjf files in directory specified.\n'
     for File in Files:
         with open(f'{directory}/{File}','r') as opf:
             lines = opf.readlines()
@@ -51,3 +52,6 @@ def determine_similarity(self):
 
     for File in Files:
         shutil.copy(f'{directory}/{File}',f'{directory}/uniques/{File}')
+
+    Cinfo+= f'After comparison found {len(Files)} unique geometries.'
+    self.ui.Console.setPlainText(Cinfo)

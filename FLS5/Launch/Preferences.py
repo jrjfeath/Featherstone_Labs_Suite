@@ -6,7 +6,7 @@ def Root_Path():
     Root = os.getenv('APPDATA')
     if Root == None:
         Root = os.getenv('HOME')
-    path = os.path.join(Root,'McMahonSuite')
+    path = os.path.join(Root,'FLS5')
     if os.path.isdir(path) == False:
         os.mkdir(path)
     return Path(path)
