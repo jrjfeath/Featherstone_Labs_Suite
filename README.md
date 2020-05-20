@@ -37,6 +37,12 @@ A suite of tools coded for python versions 3.6+ for analyzing gaussian input and
 
 - A simple tool for renaming file quickly, not very complex, options are explained on the tab.
 
+### Parse Unique Inputs:
+
+- A tool for determining unique structures in a directory.
+- Percent Similarity is how similar two structures must be to be considered for parsing. If it is above the threshold provided the structure is discarded.
+- Files are looped through by filename, ensure filenames are organized by energy such that you do not discard low energy structures in favour of high energy structures.
+
 ## Extraction Tools
 
 ### Single Point Energy:
