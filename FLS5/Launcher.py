@@ -20,19 +20,18 @@ for package in rp:
         #If user does not have git in their user path on windows
         if str(e).split()[0] == 'Failed':
             #First check if git is even installed
-            root = os.getenv('APPDATA')
+            root = Path(f"{os.path.dirname(os.getenv('APPDATA'))}/Local")
             git_exe_root = Path(f'{root}/GitHubDesktop')
             if os.path.isdir(git_exe_root) == False:
                 print('Gitdesktop not detected on system, please install from provided url:')
                 print('https://desktop.github.com/')
                 sys.exit()
             #If git is installed search folder for exe
-            exe_location = list(Path(git_exe_root).rglob("*.[e][x][e]"))
-            #Add exe to the path and then launch a second instance
+            exe_location = str(list(Path(git_exe_root).rglob("git.exe"))[0])
+            exe_location = os.path.dirname(exe_location)
+            #Add exe to the path such that gui can be loaded
             my_env = os.environ
             my_env['PATH'] = exe_location+';'+my_env['PATH']
-            subprocess.Popen('python '+os.getcwd()+'\\Launcher.py',env=my_env)
-            #sys.exit()
         else:
             print(f'{package} cannot be found, would you like to install it (y/n)?')
             answer = input()
