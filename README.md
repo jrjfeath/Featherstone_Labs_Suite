@@ -87,6 +87,12 @@ A suite of tools coded for python versions 3.6+ for analyzing gaussian input and
 - Extract the geometry data and other various parameters from an optimization into two files for each input.
 - Creates two files comparing the mass weighted co-ordinate data for all inputs in the directory.
 
+### Temperature analysis:
+
+- Analyze thermochemical data in a directory at different temperatures.
+- Vibrational and pressure factors are to specify if these factors were changed for your calculation.
+- Output is a csv file containing the entropy, electronic energy, enthalpy, and free energy, at each temperature incremenet.
+
 ## Preferences
 
 - These are where your default parameters are stored. The file storing these parameters can be found in your appdata folder on windows or your home directory in linux.
