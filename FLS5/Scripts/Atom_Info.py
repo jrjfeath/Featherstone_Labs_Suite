@@ -130,7 +130,22 @@ atomic_masses_legacy = np.array([
     np.nan,  # Fm
     np.nan,  # Md
     np.nan,  # No
-    np.nan  # Lw
+    np.nan,  # Lr
+    np.nan,  # Rf
+    np.nan,  # Db
+    np.nan,  # Sg
+    np.nan,  # Bh
+    np.nan,  # Hs
+    np.nan,  # Mt
+    np.nan,  # Ds
+    np.nan,  # Rg
+    np.nan,  # Cn
+    np.nan,  # Nh
+    np.nan,  # Fl
+    np.nan,  # Mc
+    np.nan,  # Lv
+    np.nan,  # Ts
+    np.nan,  # Og
 ])
 
 missing = 0.2
@@ -232,28 +247,28 @@ covalent_radii = np.array([
     1.87,  # Pu
     1.80,  # Am
     1.69,  # Cm
-    missing,  # Bk
-    missing,  # Cf
-    missing,  # Es
-    missing,  # Fm
-    missing,  # Md
-    missing,  # No
-    missing,  # Lr
-    missing,  # Rf
-    missing,  # Db
-    missing,  # Sg
-    missing,  # Bh
-    missing,  # Hs
-    missing,  # Mt
-    missing,  # Ds
-    missing,  # Rg
-    missing,  # Cn
-    missing,  # Nh
-    missing,  # Fl
-    missing,  # Mc
-    missing,  # Lv
-    missing,  # Ts
-    missing,  # Og
+    1.68,  # Bk
+    1.68,  # Cf
+    1.65,  # Es
+    1.67,  # Fm
+    1.73,  # Md
+    1.76,  # No
+    1.61,  # Lr
+    1.57,  # Rf
+    1.49,  # Db
+    1.43,  # Sg
+    1.41,  # Bh
+    1.34,  # Hs
+    1.29,  # Mt
+    1.28,  # Ds
+    1.21,  # Rg
+    1.22,  # Cn
+    1.36,  # Nh
+    1.43,  # Fl
+    1.62,  # Mc
+    1.75,  # Lv
+    1.65,  # Ts
+    1.57,  # Og
 ])
 
 vdw_radii = np.array([

@@ -7,6 +7,7 @@ from numpy import dot
 from numpy.linalg import norm
 
 from Rearrange_Molecules import GEOM
+from connectivity import find_connectivity
 
 def determine_similarity(self):
     #Check if user has specified a valid directory
@@ -21,30 +22,31 @@ def determine_similarity(self):
     for File in Files:
         with open(f'{directory}/{File}','r') as opf:
             lines = opf.readlines()
-        geometry = ''
+        geometry = []
+        labels = []
         for line in lines:
             line = line.split()
             if len(line) != 4: continue
-            try: float(line[1]),float(line[2]),float(line[3])
+            try: 
+                geometry.append([float(line[1]),float(line[2]),float(line[3])])
+                labels.append(line[0])
             except ValueError: continue
-            geometry += '   '.join(line)+'\n'
-        md = GEOM(geometry) #molecule data
-        distances = (md.comDist) #distances from center
-        xyz = md.geom
-        masses = xyz[:,0]
-        mw = sorted(list(distances*masses))
+        geometry = np.array(geometry)
+        mw = find_connectivity(labels,geometry)
         mwl.append(mw)
 
     #Grab value specified by the user
-    similarity_threshold = self.ui.t1t4dsb_1.value()/100
+    similarity_threshold = self.ui.t1t4dsb_1.value()
 
     failed = []
     for index1, mw1 in enumerate(mwl):
         if index1 in failed: continue
         for index2, mw2 in enumerate(mwl):
             if index2 <= index1 or index2 in failed: continue
-            cos_sim = round(dot(mw1, mw2)/(norm(mw1)*norm(mw2)),4)
-            if cos_sim > similarity_threshold:
+            #similarity = round(dot(mw1, mw2)/(norm(mw1)*norm(mw2)),8)
+            similarity = round(abs(1-np.average(np.array(mw1)/np.array(mw2))),8)
+            if similarity < (100-similarity_threshold)/100:
+                #print(Files[index1],Files[index2],mw1,mw2,similarity)
                 failed.append(index2)
 
     for index in sorted(failed,reverse=True):
