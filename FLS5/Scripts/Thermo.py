@@ -58,7 +58,7 @@ def extract(self,Type,files,directory):
             SET = float(re.findall(r'Sum of electronic and thermal Energies=(.*?)\n', text)[0].strip())
             SETE = float(re.findall(r'Sum of electronic and thermal Enthalpies=(.*?)\n', text)[0].strip())
             SETF = float(re.findall(r'Sum of electronic and thermal Free Energies=(.*?)\n', text)[0].strip())
-            ET = float(re.findall(r'Total                  (.*?) Electronic', text,re.DOTALL)[0].split()[2])
+            ET = float(re.findall(r'Total   (.*?) Electronic', text,re.DOTALL)[0].split()[2])
             try: MP = re.findall(r'Multiplicity =(.*?)\n',text)[0].strip() 
             except IndexError: MP = 'N/A'
             
