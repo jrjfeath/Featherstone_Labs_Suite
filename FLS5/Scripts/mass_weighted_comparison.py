@@ -11,13 +11,29 @@ from connectivity import find_connectivity
 
 def determine_similarity(self):
     #Check if user has specified a valid directory
-    directory = self.check_directory(self.ui.t1t4e_1.text())
+    path = self.ui.t1t4e_1.text()
+    directory = self.check_directory(path)
+    #if directory is not valid user has specified csv or invalid directory
     if directory == None: 
-        self.ui.Console.setPlainText('Invalid directory selected')
-        return
+        #Check that the path isnt empty
+        if len(path) < 5: 
+            self.ui.Console.setPlainText('Invalid directory selected')
+            return
+        if os.path.isfile(path) and path[-4:] == '.csv':
+            with open(path,'r') as opf:
+                lines = opf.readlines()
+            Files = []
+            for line in lines[1:]:
+                line = line.split(',')
+                Files.append(line[0][:line[0].rfind('.')]+'.gjf')
+            directory = os.path.dirname(path)
+        else:
+            self.ui.Console.setPlainText('File specified needs to be a csv with filenames in the first column.')
+            return
+    #If it was a directory sort the files by filename
+    else: Files = sorted([x for x in os.listdir(directory) if x.endswith('.gjf')])
 
     mwl = [] #mass weighted coordinate list
-    Files = sorted([x for x in os.listdir(directory) if x.endswith('.gjf')])
     Cinfo = f'Found {len(Files)} .gjf files in directory specified.\n'
     for File in Files:
         with open(f'{directory}/{File}','r') as opf:

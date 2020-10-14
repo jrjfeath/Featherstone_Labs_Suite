@@ -35,7 +35,8 @@ class AppWindow(QtWidgets.QMainWindow):
         app_icon.addFile(os.path.join(Icon_Path,'Cup_256.png'), QtCore.QSize(256,256))
         self.setWindowIcon(app_icon)
         GUI_Calls(self) 
-        self.ui.t2t4PB_1.clicked.connect(lambda: self.file_open('*.gjf'))
+        self.ui.t2t4PB_1.clicked.connect(lambda: self.file_open('*.gjf','t2t4PB_1'))
+        self.ui.t1t4pb.clicked.connect(lambda: self.file_open('*.csv','t1t4pb'))
         self.ui.action_Check_for_updates.triggered.connect(lambda: self.Update(1))
         self.ui.t2t2CB_3.currentIndexChanged.connect(lambda: self.enable_relative())
         Root = os.getenv('APPDATA')
@@ -48,11 +49,12 @@ class AppWindow(QtWidgets.QMainWindow):
         self.show()
         self.Update(0)
 
-    def file_open(self, file_type):
+    def file_open(self, file_type, which_button):
         name = QtWidgets.QFileDialog.getOpenFileName(self, 'Open File','',file_type)
         if len(name) > 1: #Linux stores name in tuple
             name = name[0]
-        self.ui.t2t4LE_1.setText(name)
+        if which_button == 't2t4PB_1': self.ui.t2t4LE_1.setText(name)
+        else: self.ui.t1t4e_1.setText(name)
 
     def mousePressEvent(self, event):
         #If user enters new basis update dropdown
