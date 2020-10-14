@@ -39,11 +39,12 @@ A suite of tools coded for python versions 3.6+ for analyzing gaussian input and
 ### Bulk Rename Files (Temporarily disabled):
 
 - A simple tool for renaming file quickly, not very complex, options are explained on the tab.
-- Prone to errors when encountering special characters, as such has been disabled for the time being, use an alternative such as https://www.bulkrenameutility.co.uk/
+- Prone to errors when encountering special characters, has been disabled for the time being, use an alternative such as https://www.bulkrenameutility.co.uk/
 
 ### Parse Unique Inputs:
 
 - A tool for determining unique structures in a directory.
+- A csv file containing filenames in the first column can now be specified if files should be sorted in an order other than alphabetical/numerical (i.e by energy).
 - Percent Similarity is how similar two structures must be to be considered for parsing. If it is above the threshold provided the structure is discarded.
 - Files are looped through by filename, ensure filenames are organized by energy such that you do not discard low energy structures in favour of high energy structures.
 
