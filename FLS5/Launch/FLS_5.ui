@@ -1,0 +1,2478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>675</width>
+    <height>525</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>675</width>
+    <height>525</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>675</width>
+    <height>525</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Featherstone Labs Suite 1.2.0</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../favicon.ico</normaloff>../favicon.ico</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>-2</x>
+      <y>0</y>
+      <width>681</width>
+      <height>355</height>
+     </rect>
+    </property>
+    <property name="tabShape">
+     <enum>QTabWidget::Rounded</enum>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="Tab_1">
+     <attribute name="title">
+      <string>Modifying Tools</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>-2</x>
+        <y>0</y>
+        <width>681</width>
+        <height>322</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="t1t1">
+       <attribute name="title">
+        <string>Modify Input Files</string>
+       </attribute>
+       <widget class="QLabel" name="t1l1">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>60</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Directory</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1l2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>129</y>
+          <width>111</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Checkpoint File</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1l3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>85</y>
+          <width>91</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Scratch File</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1l4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>45</y>
+          <width>111</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Read Write File</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1l5">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>165</y>
+          <width>81</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Username</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="t1de">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>10</y>
+          <width>145</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="Chk_drop">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>124</y>
+          <width>145</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Do not save</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Same directory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>/scratch/chk</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="Scr_drop">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>80</y>
+          <width>145</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Do not save</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Same directory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>/scratch/scr</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Same &amp; Nosave</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="Rwf_drop">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>40</y>
+          <width>145</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Do not save</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Same directory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>/scratch/rwf</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Same &amp; Nosave</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLineEdit" name="gusr_entry">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>170</y>
+          <width>145</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1l6">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>10</y>
+          <width>60</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Basis set</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="basis_entry">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>10</y>
+          <width>175</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1l7">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>40</y>
+          <width>80</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Processors</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1l9">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>100</y>
+          <width>80</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Charge</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1l8">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>70</y>
+          <width>91</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Memory (MB)</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1l10">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>130</y>
+          <width>81</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Multiplicity</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="proc_entry">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>40</y>
+          <width>175</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>32</number>
+        </property>
+        <property name="value">
+         <number>4</number>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="mem_entry">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>70</y>
+          <width>175</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>128000</number>
+        </property>
+        <property name="value">
+         <number>4500</number>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="CHARGE_entry">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>100</y>
+          <width>175</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>-99</number>
+        </property>
+        <property name="maximum">
+         <number>99</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="Multi_entry">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>130</y>
+          <width>175</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>-99</number>
+        </property>
+        <property name="maximum">
+         <number>99</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1l11">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>200</y>
+          <width>91</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Footer Info</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="foot_drop">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>230</y>
+          <width>104</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Append</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Overwrite</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QTextEdit" name="foote">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>200</y>
+          <width>525</width>
+          <height>83</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="t1t2">
+       <attribute name="title">
+        <string>Convert Output to Input</string>
+       </attribute>
+       <widget class="QLabel" name="t1t2l04">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>45</y>
+          <width>111</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Read Write File</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t2l03">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>85</y>
+          <width>81</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Scratch File</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="Scr_drop_2">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>80</y>
+          <width>145</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Do not save</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Same directory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>/scratch/scr</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Same &amp; Nosave</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="t1t2l01">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>60</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Directory</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="t1de_2">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>10</y>
+          <width>145</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="foote_2">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>200</y>
+          <width>525</width>
+          <height>83</height>
+         </rect>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t2l07">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>70</y>
+          <width>80</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Processors</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t2l02">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>129</y>
+          <width>121</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Checkpoint File</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t2l05">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>165</y>
+          <width>81</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Username</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t2l11">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>200</y>
+          <width>81</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Footer Info</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="Chk_drop_2">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>124</y>
+          <width>145</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Do not save</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Same directory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>/scratch/chk</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QSpinBox" name="Multi_entry_2">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>160</y>
+          <width>175</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>-99</number>
+        </property>
+        <property name="maximum">
+         <number>99</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="mem_entry_2">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>100</y>
+          <width>175</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>128000</number>
+        </property>
+        <property name="value">
+         <number>4500</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t2l06">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>40</y>
+          <width>60</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Basis set</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="proc_entry_2">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>70</y>
+          <width>175</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>32</number>
+        </property>
+        <property name="value">
+         <number>4</number>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="basis_entry_2">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>40</y>
+          <width>175</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="Rwf_drop_2">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>40</y>
+          <width>145</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Do not save</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Same directory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>/scratch/rwf</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Same &amp; Nosave</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="t1t2l09">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>130</y>
+          <width>80</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Charge</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="CHARGE_entry_2">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>130</y>
+          <width>175</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>-99</number>
+        </property>
+        <property name="maximum">
+         <number>99</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t2l10">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>160</y>
+          <width>81</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Multiplicity</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t2l08">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>100</y>
+          <width>101</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Memory (MB)</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="gusr_entry_2">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>170</y>
+          <width>145</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t2l12">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>7</y>
+          <width>101</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Status of Jobs</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="t1t2CB_1">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>2</y>
+          <width>175</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Successful</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Succesful &amp; Imaginary</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sucessful &amp; Failed</string>
+         </property>
+        </item>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="t1t4">
+       <attribute name="title">
+        <string>Parse Unique Inputs</string>
+       </attribute>
+       <widget class="QLabel" name="t1t4l_1">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>101</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>File or Directory</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="t1t4e_1">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>10</y>
+          <width>391</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="t1t4dsb_1">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>43</y>
+          <width>73</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="decimals">
+         <number>2</number>
+        </property>
+        <property name="value">
+         <double>98.500000000000000</double>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t4l_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>53</y>
+          <width>121</width>
+          <height>14</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Percent Similarity</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="t1t4pb">
+        <property name="geometry">
+         <rect>
+          <x>565</x>
+          <y>10</y>
+          <width>75</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select File</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="t1t3">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <attribute name="title">
+        <string>Bulk Rename Files</string>
+       </attribute>
+       <widget class="QLineEdit" name="t1t3le_1">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>10</y>
+          <width>525</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t3l_1">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>60</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Directory</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t3l_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>44</y>
+          <width>91</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Search For</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t3l_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>101</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Replace With</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="t1t3le_2">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>44</y>
+          <width>525</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>The keyword you would like to replace in the filename (i.e _OPT)</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="t1t3le_3">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>80</y>
+          <width>525</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>The keyword you would like to replace with the filename (i.e _FREQ)</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t3l_4">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>120</y>
+          <width>121</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Optional Settings</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="t1t3le_4">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>150</y>
+          <width>445</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Specify a file extension here to edit files of that type (i.e .gjf)</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="t1t3le_5">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>184</y>
+          <width>445</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Specify a file extension here to change files to that type (i.e .gjf)</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t3l_5">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>150</y>
+          <width>161</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Search For (Extension)</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t1t3l_6">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>184</y>
+          <width>171</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Replace With (Extension)</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Extraction Tools</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>671</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>3</number>
+      </property>
+      <widget class="QWidget" name="t2t1">
+       <attribute name="title">
+        <string>Single Point Energy</string>
+       </attribute>
+       <widget class="QLabel" name="t2t1l_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>44</y>
+          <width>131</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Energy to Extract</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t1l_4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>124</y>
+          <width>131</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Move Unique Files?</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t1l_1">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>60</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Directory</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t1l_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>84</y>
+          <width>141</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Search Recursively?</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t1l_5">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>165</y>
+          <width>141</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Supress Duplicates?</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="t2t1LE_1">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>10</y>
+          <width>475</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="t2t1CB_1">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>40</y>
+          <width>71</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>HF</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>MP2</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="t2t1CB_2">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>80</y>
+          <width>71</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>False</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>True</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="t2t1CB_3">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>120</y>
+          <width>71</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>False</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>True</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="t2t1CB_4">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>160</y>
+          <width>71</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>False</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>True</string>
+         </property>
+        </item>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="t2t2">
+       <attribute name="title">
+        <string>Thermochemical Data</string>
+       </attribute>
+       <widget class="QLabel" name="t2t2l_1">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>60</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Directory</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="t2t2LE_1">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>10</y>
+          <width>475</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t2l_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>92</y>
+          <width>131</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Search Recursively?</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="t2t2CB_2">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>86</y>
+          <width>71</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>False</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>True</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="t2t2l_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>49</y>
+          <width>91</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Status of Jobs</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="t2t2CB_1">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>43</y>
+          <width>175</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Successful</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sucessful and Failed</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="t2t2l_4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>138</y>
+          <width>91</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Sort files by</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="t2t2CB_3">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>127</y>
+          <width>118</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Filename</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Electronic</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Enthalpy</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Free Energy</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="t2t2l_5">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>180</y>
+          <width>131</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Relative energies?</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="t2t2CB_4">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>170</y>
+          <width>71</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>False</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>True</string>
+         </property>
+        </item>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="t2t3">
+       <attribute name="title">
+        <string>Computed Spectrum</string>
+       </attribute>
+       <widget class="QLineEdit" name="t2t3LE_1">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>10</y>
+          <width>475</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t3l_1">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>60</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Directory</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t3l_4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>115</y>
+          <width>80</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>IR-HWHM</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t3l_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>91</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Wavenumber</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="t2t3SB_2">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>80</y>
+          <width>145</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>4000</number>
+        </property>
+        <property name="value">
+         <number>600</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t3l_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>45</y>
+          <width>80</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Step Size</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="t2t3SB_1">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>45</y>
+          <width>145</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="value">
+         <number>1</number>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="t2t3SB_4">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>115</y>
+          <width>145</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="value">
+         <number>4</number>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="t2t3CB_1">
+        <property name="geometry">
+         <rect>
+          <x>159</x>
+          <y>147</y>
+          <width>120</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Harmonic</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Anharmonic</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="t2t3CB_2">
+        <property name="geometry">
+         <rect>
+          <x>159</x>
+          <y>188</y>
+          <width>71</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>True</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>False</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="t2t3l_5">
+        <property name="geometry">
+         <rect>
+          <x>9</x>
+          <y>152</y>
+          <width>111</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Frequency Type</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t3l_6">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>193</y>
+          <width>121</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Relative Intensity</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="t2t3SB_3">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>79</y>
+          <width>145</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>4000</number>
+        </property>
+        <property name="value">
+         <number>2400</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t3l_7">
+        <property name="geometry">
+         <rect>
+          <x>358</x>
+          <y>79</y>
+          <width>111</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>to Wavenumber</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="t2t4">
+       <attribute name="title">
+        <string>3D Rotation</string>
+       </attribute>
+       <widget class="QLabel" name="t2t4l_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>87</y>
+          <width>111</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Rotation (Deg)</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="t2t4SB_1">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>87</y>
+          <width>61</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>360</number>
+        </property>
+        <property name="value">
+         <number>2</number>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="t2t4LE_1">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>10</y>
+          <width>371</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="t2t4CB_1">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>43</y>
+          <width>47</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>X</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Z</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="t2t4l_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>47</y>
+          <width>91</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Rotation Axis</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t4l_1">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>60</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Directory</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="t2t4PB_1">
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>10</y>
+          <width>101</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select File</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="t2t5">
+       <attribute name="title">
+        <string>Geometry and Parameters</string>
+       </attribute>
+       <widget class="QComboBox" name="t2t5CB_2">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>41</y>
+          <width>175</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Successful</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sucessful and Failed</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="t2t5CB_1">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>80</y>
+          <width>61</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>.gjf</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>.log</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLineEdit" name="t2t5LE_1">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>10</y>
+          <width>521</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t5l_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>46</y>
+          <width>91</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Status of Jobs</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t5l_1">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>60</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Directory</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t5l_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>87</y>
+          <width>101</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>File Type</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="t2t6">
+       <attribute name="title">
+        <string>Temperature Analysis</string>
+       </attribute>
+       <widget class="QLabel" name="t2t6l_1">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>60</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Directory</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="t2t6LE_1">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>10</y>
+          <width>521</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="t2t6SB_1">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>50</y>
+          <width>81</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>10000</number>
+        </property>
+        <property name="value">
+         <number>300</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t6l_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>50</y>
+          <width>141</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Inital Temperature (K)</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t6l_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>90</y>
+          <width>141</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Final Temperature (K)</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t6l_4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>130</y>
+          <width>181</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Temperature Increment (K)</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="t2t6SB_2">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>90</y>
+          <width>81</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>10000</number>
+        </property>
+        <property name="value">
+         <number>900</number>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="t2t6SB_3">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>130</y>
+          <width>81</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>10000</number>
+        </property>
+        <property name="value">
+         <number>50</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t6l_5">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>170</y>
+          <width>121</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Vibrational Factor</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="t2t6l_6">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>210</y>
+          <width>171</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Pressure Factor</string>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="t2t6dsb1">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>170</y>
+          <width>81</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="t2t6dsb2">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>210</y>
+          <width>81</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="t2t6CB_1">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>569</x>
+          <y>45</y>
+          <width>71</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>False</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>True</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="t2t6l_7">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>370</x>
+          <y>50</y>
+          <width>171</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Use Negative Frequencies?</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Preferences</string>
+     </attribute>
+     <widget class="QSpinBox" name="t3PSB_3">
+      <property name="geometry">
+       <rect>
+        <x>505</x>
+        <y>82</y>
+        <width>145</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>-99</number>
+      </property>
+      <property name="maximum">
+       <number>99</number>
+      </property>
+      <property name="value">
+       <number>1</number>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="t3PQB_3">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>90</y>
+        <width>142</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+      </property>
+      <property name="minimumContentsLength">
+       <number>0</number>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>Do not save</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Same directory</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>/scratch/rwf</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Same &amp; Nosave</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="t1l7_2">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>10</y>
+        <width>91</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Processors</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="t3PSB_1">
+      <property name="geometry">
+       <rect>
+        <x>505</x>
+        <y>10</y>
+        <width>145</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>32</number>
+      </property>
+      <property name="value">
+       <number>8</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="t1l8_2">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>46</y>
+        <width>91</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Memory (MB)</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="t3PQB_2">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>50</y>
+        <width>142</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Do not save</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Same directory</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>/scratch/scr</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Same &amp; Nosave</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="t1l10_2">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>119</y>
+        <width>91</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Multiplicity</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="t3PSB_2">
+      <property name="geometry">
+       <rect>
+        <x>505</x>
+        <y>46</y>
+        <width>145</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>128000</number>
+      </property>
+      <property name="value">
+       <number>4500</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="t1l5_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>130</y>
+        <width>81</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Username</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="t3PQB_1">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>10</y>
+        <width>142</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Do not save</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Same directory</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>/scratch/chk</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="t1l9_2">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>82</y>
+        <width>91</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Charge</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="t3PLE_1">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>130</y>
+        <width>142</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>jrjfeath</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="t1l2_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>93</y>
+        <width>111</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Checkpoint File</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="t1l4_2">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>15</y>
+        <width>111</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Read Write File</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="t3PSB_4">
+      <property name="geometry">
+       <rect>
+        <x>505</x>
+        <y>119</y>
+        <width>145</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>-99</number>
+      </property>
+      <property name="maximum">
+       <number>99</number>
+      </property>
+      <property name="value">
+       <number>1</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="t1l3_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>53</y>
+        <width>91</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Scratch File</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="t3PQB_4">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>160</y>
+        <width>142</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string># opt pm7</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="t1l4_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>163</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Basis set</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="t3PPTE_1">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>200</y>
+        <width>630</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+      <property name="plainText">
+       <string># opt pm7
+# opt=tight hf/6-31g
+# opt b3lyp/6-311++G(d,p)
+# freq b3lyp/6-311++G(d,p)
+# opt freq b3lyp/6-311++G(d,p)</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QPlainTextEdit" name="Console">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>390</y>
+      <width>650</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="plainText">
+     <string>Welcome to the latest edition of Featherstone Labs Suite!
+This suite of programs was developed for use with Gaussian calculations.
+This program can be updated by selecting: &quot;Check for updates&quot; under &quot;File&quot; in the menu.
+Any recommendations, errors, or concerns should be submitted at: 
+https://github.com/jrjfeath/Featherstone_Labs_Suite/issues</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>360</y>
+      <width>93</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Submit</string>
+    </property>
+    <property name="shortcut">
+     <string>Shift+Return</string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>360</y>
+      <width>541</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>675</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="action_Check_for_updates"/>
+    <addaction name="action_Exit"/>
+   </widget>
+   <addaction name="menuFile"/>
+  </widget>
+  <action name="action_Change_Log">
+   <property name="text">
+    <string>Change Log</string>
+   </property>
+  </action>
+  <action name="action_Check_for_updates">
+   <property name="text">
+    <string>Check for updates</string>
+   </property>
+  </action>
+  <action name="action_Exit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
