@@ -36,9 +36,10 @@ A suite of tools coded for python versions 3.6+ for analyzing gaussian input and
 
 - See above for explanation of rwf,scr, and chk options.
 
-### Bulk Rename Files:
+### Bulk Rename Files (Temporarily disabled):
 
 - A simple tool for renaming file quickly, not very complex, options are explained on the tab.
+- Prone to errors when encountering special characters, as such has been disabled for the time being, use an alternative such as https://www.bulkrenameutility.co.uk/
 
 ### Parse Unique Inputs:
 
