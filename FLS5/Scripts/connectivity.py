@@ -56,7 +56,8 @@ def find_connectivity(labels,xyz):
         molecule.append(x)
         molecules.append(sorted(molecule))
     #Find the core molecule
-    core_index = np.argmax([len(x) for x in molecules])
+    if len(molecules) > 1: core_index = np.argmax([len(x) for x in molecules])
+    else: core_index = 0
     core = molecules[core_index]
     core_xyz = np.array([xyz[x-1] for x in core])
     core_masses = np.array([masses[x-1] for x in core])
@@ -64,10 +65,11 @@ def find_connectivity(labels,xyz):
     mcom = np.sum(core_weighted,axis=0)/sum(core_masses)
     #Subtract the com of the core from xyz
     xyz = xyz-mcom
-    xyz = np.array([xyz[x] for x in range(len(labels)) if x+1 not in core])
+    if len(molecules) > 1: 
+        xyz = np.array([xyz[x] for x in range(len(labels)) if x+1 not in core])
+        masses = np.array([masses[x] for x in range(len(labels)) if x+1 not in core])
     #Calculate distance of atom to com
     distances = np.array([Distance(x,mcom) for x in xyz])
     #Calculate mass weighted distances
-    masses = np.array([masses[x] for x in range(len(labels)) if x+1 not in core])
     mw = sorted(list(distances*masses))
     return mw
