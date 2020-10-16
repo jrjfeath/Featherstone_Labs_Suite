@@ -60,7 +60,8 @@ def determine_similarity(self):
         for index2, mw2 in enumerate(mwl):
             if index2 <= index1 or index2 in failed: continue
             #similarity = round(dot(mw1, mw2)/(norm(mw1)*norm(mw2)),8)
-            similarity = round(abs(1-np.average(np.array(mw1)/np.array(mw2))),8)
+            try: similarity = round(abs(1-np.average(np.array(mw1)/np.array(mw2))),8)
+            except ValueError: continue #If structures of two different sizes are compared
             if similarity < (100-similarity_threshold)/100:
                 #print(Files[index1],Files[index2],mw1,mw2,similarity)
                 failed.append(index2)
