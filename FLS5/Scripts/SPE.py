@@ -21,7 +21,8 @@ def Extract_SPE(self):
                     files.append(os.path.join(root, filename))
         #Single Point Type
         if self.ui.t2t1CB_1.currentIndex() == 0: Type = 'HF'
-        else: Type = 'MP2'
+        elif self.ui.t2t1CB_1.currentIndex() == 1: Type = 'MP2'
+        else: Type = 'CCSD'
         #Determine if there are files to analyze
         if len(files) > 0: extract(self,Type,files,directory)
         else: self.ui.Console.setPlainText('No output files in specified directory.')
@@ -46,6 +47,8 @@ def extract_energy(Type,data):
         Value = re.findall(r'H\s*F\s*=\s*(.*?)[\|\\]',data)
     if Type == 'MP2': #look for mp2
         Value = re.findall(r'M\s*P\s*2\s*=\s*(.*?)[\|\\]',data)
+    if Type == 'CCSD': #look for CCSD
+        Value = re.findall(r'C\s*C\s*S\s*D\s*=\s*(.*?)[\|\\]',data)
     if Value:
         Value = Value[-1].replace('\n','').replace(' ','')
         return float(Value)
