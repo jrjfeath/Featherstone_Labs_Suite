@@ -44,6 +44,7 @@ def make_input(self,tab,directory,files,chk,scr,rwf,username,basis,proc,memory,c
     console_info = ''
     n = 0
     Ping = time.time()
+    uni_c = 0 #Check input for unicode
     for file in files:
         if time.time()-Ping > 0.1:
             self.ui.progressBar.setValue((n/len(files))*100)
@@ -111,45 +112,57 @@ def make_input(self,tab,directory,files,chk,scr,rwf,username,basis,proc,memory,c
 
         ##### Write the data to a new file in a new directory #####
         file_name = file_name[:-4]
-        opf = open(os.path.join(directory,'New_Input',file_name+'.gjf'),'w')
+        fs = '' #empty string variable for writing to file
         if rwf == 0 and chk == 0 and scr == 0:
-            opf.write('%nosave\n')
+            fs+=f'%nosave\n'
         if rwf == 1:
-            opf.write('%rwf='+file_name+'.rwf\n')
+            fs+=f'%rwf={file_name}.rwf\n'
         if rwf == 2:
-            opf.write('%rwf=/scratch/'+username+'/rwf/'+file_name+'.rwf\n')
+            fs+=f'%rwf=/scratch/{username}/rwf/{file_name}.rwf\n'
         if rwf == 3:
-            opf.write('%rwf='+file_name+'.rwf\n%nosave\n')
+            fs+=f'%rwf={file_name}.rwf\n%nosave\n'
         if scr == 1:
-            opf.write('%scr='+file_name+'.scr\n')
+            fs+=f'%scr={file_name}.scr\n'
         if scr == 2:
-            opf.write('%scr=/scratch/'+username+'/scr/'+file_name+'.scr\n')
+            fs+=f'%scr=/scratch/{username}/scr/{file_name}.scr\n'
         if scr == 3:
-            opf.write('%scr='+file_name+'.scr\n%nosave\n')
+            fs+=f'%scr={file_name}.scr\n%nosave\n'
         if chk == 1:
-            opf.write('%chk='+file_name+'.chk\n')
+            fs+=f'%chk={file_name}.chk\n'
         if chk == 2:
-            opf.write('%chk=/scratch/'+username+'/chk/'+file_name+'.chk\n')            
-        opf.write('%mem='+str(memory)+'mb\n')
-        opf.write('%nproc='+str(proc)+'\n')
-        opf.write(basis+'\n\n')
-        opf.write('Original File: '+file_name+'\n\n')
-        opf.write(str(charge)+' '+str(multiplicity)+'\n')
+            fs+=f'%chk=/scratch/{username}/chk/{file_name}.chk\n'          
+        fs+=f'%mem={memory}mb\n'
+        fs+=f'%nproc={proc}\n'
+        fs+=f'{basis}\n\n'
+        fs+=f'Original File: {file_name}\n\n'
+        fs+=f'{charge} {multiplicity}\n'
 
         for i in geometry:
-            opf.write('%2s    %12s    %12s    %12s\n'%(i[0],i[1],i[2],i[3]))
+            fs+='%2s    %12s    %12s    %12s\n'%(i[0],i[1],i[2],i[3])
     
         if tab == 0: #If modifying inputs
             if self.ui.foot_drop.currentIndex() == 0:
                 old_footer = lines[geom_index+len(geometry):]
                 old_footer = [x.strip('\n') for x in old_footer if len(x.strip('\n').strip(' ')) > 0]
                 if len(old_footer) > 0:
-                    opf.write('\n')
+                    fs+='\n'
                     for i in old_footer:
-                        opf.write(i+'\n')
-        opf.write('\n'+footer)
-        opf.write('\n\n\n')
-        opf.close()    
+                        fs+=f'{i}\n'
+        fs+=f'\n{footer}'
+        fs+='\n\n\n'
+
+        for x in fs:
+            if uni_c != 0: break #Skip if unicode has already been checked
+            if ord(x) > 127:
+                uni_c+=1
+                uni_i = fs.find(x)
+                console_info += (f'Unicode detected in input: {x}\n')
+                console_info += (f'Unicode surrounded by {fs[uni_i-3:uni_i+3]}\n')
+                console_info +=('Please remove or gaussian will crash.\n')
+        if uni_c == 0:
+            opf = open(os.path.join(directory,'New_Input',file_name+'.gjf'),'w')
+            opf.write(fs)
+            opf.close()    
         n+=1
     console_info += ('New files have been written to: '+os.path.join(directory,'New_Input')+'\n')
     self.ui.Console.setPlainText(console_info)  
