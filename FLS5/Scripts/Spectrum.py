@@ -8,7 +8,7 @@ from SPE import check_file_closed
 def spectrum(self):
     directory = self.check_directory(self.ui.t2t3LE_1.text())
     if directory:
-        log_files = [os.path.join(directory,f) for f in os.listdir(directory) if f.lower().endswith('.log')] #Get logs in directory 
+        log_files = [os.path.join(directory,f) for f in os.listdir(directory) if f.lower().endswith('.log') or f.lower().endswith('.tsv')] #Get logs in directory 
         freqmin = self.ui.t2t3SB_2.value()
         freqmax = self.ui.t2t3SB_3.value()
         HWHM = self.ui.t2t3SB_4.value()
@@ -190,31 +190,41 @@ def Extract_Harmonic(self,directory,log_files,freqmin,freqmax,HWHM,stepsize,rela
         openfreq=open(file,'r') #Open file and retrieve lines
         lines=openfreq.readlines()
         openfreq.close()  
-        for line in lines:
-            if 'Frequencies --' in line: #Get frequency data
-                x=str(line)[15::].split()
-                for item in x:
-                    item = float(item)
-                    freq.append(item)
-            elif 'IR Inten    --' in line: #Get ir intensity data
-                y=(str(line)[15::]).split()
-                for item in y:
-                    item = float(item)                         
-                    inten.append(item)
-            elif 'Zero-point correction=' in line:
-                ZPE_correct = line.split()[2]
-            elif 'SCF Done:' in line:
-                energy = line.split()[4]
-        if ZPE_correct and energy and len(freq) > 0:
-            if relative == 0:
-                inten[:] = ['%3f' % (x/max(inten)) for x in inten]
+        if file.endswith('.log'):
+            for line in lines:
+                if 'Frequencies --' in line: #Get frequency data
+                    x=str(line)[15::].split()
+                    for item in x:
+                        item = float(item)
+                        freq.append(item)
+                elif 'IR Inten    --' in line: #Get ir intensity data
+                    y=(str(line)[15::]).split()
+                    for item in y:
+                        item = float(item)                         
+                        inten.append(item)
+                elif 'Zero-point correction=' in line:
+                    ZPE_correct = line.split()[2]
+                elif 'SCF Done:' in line:
+                    energy = line.split()[4]
+            if ZPE_correct and energy and len(freq) > 0:
+                if relative == 0:
+                    inten[:] = ['%3f' % (x/max(inten)) for x in inten]
+                inten_master.append(inten)
+                freq_master.append(freq)
+                energy_master.append(float(energy)+float(ZPE_correct))
+                file_master.append(file)
+            else:
+                console_info += os.path.basename(file)+' does not contain any usable freqency data.\n'
+            i+=1
+        elif file.endswith('tsv'):
+            for line in lines[1:]:
+                line = line.split()
+                freq.append(float(line[0]))
+                inten.append(float(line[1]))
             inten_master.append(inten)
             freq_master.append(freq)
-            energy_master.append(float(energy)+float(ZPE_correct))
             file_master.append(file)
-        else:
-            console_info += os.path.basename(file)+' does not contain any usable freqency data.\n'
-        i+=1
+            energy_master.append(0)
     if len(freq_master) == 0: #If no frequency files found ditch process
         console_info += 'Process aborted, no frequency files found.'
         self.ui.Console.setPlainText(console_info)
