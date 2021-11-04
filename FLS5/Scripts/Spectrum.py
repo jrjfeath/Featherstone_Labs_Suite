@@ -33,7 +33,7 @@ def Extract_Anharmonic(self,directory,log_files,freqmin,freqmax,HWHM,stepsize, r
     workbook=xlsxwriter.Workbook(xlsxname)
     i = 0
     for file in log_files: #Run process for each log
-        self.ui.progressBar.setValue(((i+1)/len(log_files))*100)
+        self.ui.progressBar.setValue(int(((i+1)/len(log_files))*100))
         filename = os.path.basename(file)[:-4]
         
         #Set empty lists for harmonic and anharmonic values
@@ -182,7 +182,7 @@ def Extract_Harmonic(self,directory,log_files,freqmin,freqmax,HWHM,stepsize,rela
     console_info = 'Beginning process, '+str(len(log_files))+' files to analyze.\n'
     self.ui.Console.setPlainText(console_info)  
     for file in log_files: #Run process for each log
-        self.ui.progressBar.setValue(((i+1)/len(log_files))*100) #Set run number to value *2 of total logs
+        self.ui.progressBar.setValue(int(((i+1)/len(log_files))*100)) #Set run number to value *2 of total logs
         freq=[]
         inten=[]
         ZPE_correct = ''
@@ -236,7 +236,7 @@ def Extract_Harmonic(self,directory,log_files,freqmin,freqmax,HWHM,stepsize,rela
     workbook=xlsxwriter.Workbook(xlsxname)
     i=0
     for energies in range(len(energy_master)):
-        self.ui.progressBar.setValue(((i+1)/len(energy_master))*100)
+        self.ui.progressBar.setValue(int(((i+1)/len(energy_master))*100))
         filename = os.path.basename(file_master[energies])[:-4]
         if len(filename) < 30:
             filename = filename.translate({ord(c): None for c in '[]:*?/\!@#$'})

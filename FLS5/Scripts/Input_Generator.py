@@ -47,7 +47,7 @@ def make_input(self,tab,directory,files,chk,scr,rwf,username,basis,proc,memory,c
     uni_c = 0 #Check input for unicode
     for file in files:
         if time.time()-Ping > 0.1:
-            self.ui.progressBar.setValue((n/len(files))*100)
+            self.ui.progressBar.setValue(int((n/len(files))*100))
             Ping= time.time()
         file_name = os.path.basename(file)
         
@@ -67,7 +67,7 @@ def make_input(self,tab,directory,files,chk,scr,rwf,username,basis,proc,memory,c
                         geometry.append(lines[line_index].split())
             if len(geometry) == 0: #If there is no xyz
                 console_info += (file_name+' has no useable xyz coordinates.\n')
-                self.ui.progressBar.setValue((n/len(files))*100)
+                self.ui.progressBar.setValue(int((n/len(files))*100))
                 n+=1
                 continue
         
@@ -82,14 +82,14 @@ def make_input(self,tab,directory,files,chk,scr,rwf,username,basis,proc,memory,c
             completed=re.findall(r'Normal termination(.*?)of Gaussian',data) #See if job completed
             if len(completed) == 0 and status != 2: #If job failed and user did not select to use failed
                 console_info += (file_name+' failed and user did not select to use failed files.\n')
-                self.ui.progressBar.setValue((n/len(files))*100)
+                self.ui.progressBar.setValue(int((n/len(files))*100))
                 n+=1
                 continue
             
             IMG = re.findall(r'imaginary frequencies',data) #Check if log has imaginary frequencies
             if len(IMG) > 0 and status == 0:
                 console_info += (file_name+' contains imaginary frequencies and user did not select to use these.\n')
-                self.ui.progressBar.setValue((n/len(files))*100)
+                self.ui.progressBar.setValue(int((n/len(files))*100))
                 n+=1
                 continue           
             
@@ -106,7 +106,7 @@ def make_input(self,tab,directory,files,chk,scr,rwf,username,basis,proc,memory,c
                         geometry.append([chemical_symbols[int(i[1])],i[2],i[3],i[4]])
             else:
                 console_info += (file_name+' did not contain usable xyz coordinates, have you deleted something?\n')
-                self.ui.progressBar.setValue((n/len(files))*100)
+                self.ui.progressBar.setValue(int((n/len(files))*100))
                 n+=1
                 continue
 
