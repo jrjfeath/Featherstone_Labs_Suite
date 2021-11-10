@@ -36,20 +36,30 @@ def determine_similarity(self):
     mwl = [] #mass weighted coordinate list
     Cinfo = f'Found {len(Files)} .gjf files in directory specified.\n'
     for File in Files:
-        with open(f'{directory}/{File}','r') as opf:
-            lines = opf.readlines()
-        geometry = []
-        labels = []
-        for line in lines:
-            line = line.split()
-            if len(line) != 4: continue
-            try: 
-                geometry.append([float(line[1]),float(line[2]),float(line[3])])
-                labels.append(line[0])
-            except ValueError: continue
-        geometry = np.array(geometry)
-        mw = find_connectivity(labels,geometry)
-        mwl.append(mw)
+        try:
+            with open(f'{directory}/{File}','r') as opf:
+                lines = opf.readlines()
+                geometry = []
+                labels = []
+                for line in lines:
+                    line = line.split()
+                    if len(line) != 4: continue
+                    try: 
+                        geometry.append([float(line[1]),float(line[2]),float(line[3])])
+                        labels.append(line[0])
+                    except ValueError: continue
+                geometry = np.array(geometry)
+                mw = find_connectivity(labels,geometry)
+                mwl.append(mw)
+        except FileNotFoundError:
+            try:
+                with open(f'{directory}/Error.txt','a+') as erropf:
+                    erropf.writelines(f'{File} \n')
+            except FileNotFoundError:
+                with open(f'{directory}/Error.txt','w') as erropf:
+                    erropf.writelines("Unable to find the following file(s), please double check if they exist. \n")
+                    erropf.writelines(f'{File} \n')
+
 
     #Grab value specified by the user
     similarity_threshold = self.ui.t1t4dsb_1.value()
