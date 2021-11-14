@@ -59,7 +59,6 @@ def determine_similarity(self):
                 with open(f'{directory}/Error.txt','w') as erropf:
                     erropf.writelines("Unable to find the following file(s), please double check if they exist. \n")
                     erropf.writelines(f'{File} \n')
-        # xd
 
     #Grab value specified by the user
     similarity_threshold = self.ui.t1t4dsb_1.value()
