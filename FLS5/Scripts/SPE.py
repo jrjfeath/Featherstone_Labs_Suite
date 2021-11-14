@@ -80,7 +80,7 @@ def extract(self,Type,files,directory):
     Ping = time.time()
     for i in range(len(files)):
         if time.time()-Ping > 0.1:
-            self.ui.progressBar.setValue((i)/len(files)*100)
+            self.ui.progressBar.setValue(int((i)/len(files)*100))
             Ping = time.time()
         byte_size = os.stat(files[i])[6] #Get the size of the file
         if byte_size < search_byte: #If file smaller than 10kb

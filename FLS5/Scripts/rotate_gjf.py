@@ -49,7 +49,7 @@ def rotate(self,File,directory):
     Ping = time.time()
     while n <= rounds:
         if time.time()-Ping > 0.1:
-            self.ui.progressBar.setValue((n/rounds)*100)
+            self.ui.progressBar.setValue(int((n/rounds)*100))
             Ping = time.time()
         #Angle calculation
         angle1 = angle1+angle
