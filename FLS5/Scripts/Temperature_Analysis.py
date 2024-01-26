@@ -162,7 +162,7 @@ def analyze_temperature(self):
     Ping = time.time()
     for index, File in enumerate(Files):
         if time.time()-Ping > 1.0: #only update once a second
-            self.ui.progressBar.setValue((index)/len(Files)*100)
+            self.ui.progressBar.setValue(int((index)/len(Files)*100))
             Ping = time.time()
         Data = calculate_energy(File)
         if len(Data) == 0:

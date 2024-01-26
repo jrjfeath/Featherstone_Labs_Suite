@@ -44,7 +44,7 @@ def extract(self,extension,files,directory):
 	Ping = time.time()
 	for file in files:
 		if time.time() - Ping > 0.1:
-			self.ui.progressBar.setValue(file_number/len(files)*100)
+			self.ui.progressBar.setValue(int(file_number/len(files)*100))
 			Ping = time.time()
 		opf = open(file,'r')
 		data = opf.read()
@@ -231,7 +231,7 @@ def extract(self,extension,files,directory):
 	Ping = time.time()
 	for i in range(maxlength):
 		if time.time()-Ping > 0.1:
-			self.ui.progressBar.setValue((i/maxlength)*100)
+			self.ui.progressBar.setValue(int((i/maxlength)*100))
 			Ping = time.time()
 		leading = ''
 		trailing = ''

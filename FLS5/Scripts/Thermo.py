@@ -36,7 +36,7 @@ def extract(self,Type,files,directory):
     Ping = time.time()
     for i in range(len(files)):
         if time.time()-Ping > 1.0: #only update once a second
-            self.ui.progressBar.setValue((i)/len(files)*100)
+            self.ui.progressBar.setValue(int((i)/len(files)*100))
             Ping = time.time()
         openfile = open(files[i],'r')
         text = openfile.read()

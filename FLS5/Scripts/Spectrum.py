@@ -33,7 +33,7 @@ def Extract_Anharmonic(self,directory,log_files,freqmin,freqmax,HWHM,stepsize, r
     workbook=xlsxwriter.Workbook(xlsxname)
     i = 0
     for file in log_files: #Run process for each log
-        self.ui.progressBar.setValue(((i+1)/len(log_files))*100)
+        self.ui.progressBar.setValue(int(((i+1)/len(log_files))*100))
         filename = os.path.basename(file)[:-4]
         
         #Set empty lists for harmonic and anharmonic values
