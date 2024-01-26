@@ -227,7 +227,7 @@ def Extract_Harmonic(self,directory,log_files,freqmin,freqmax,HWHM,stepsize,rela
             raw_spec = lines[start+6:end-1]
             for row in range(len(raw_spec)):
                 temp = raw_spec[row].split()
-                freq.append(float(temp[1]))
+                freq.append(temp[1])
                 inten.append(temp[3])
             if len(freq) != 0:
                 freq_master.append(freq)
@@ -262,7 +262,7 @@ def Extract_Harmonic(self,directory,log_files,freqmin,freqmax,HWHM,stepsize,rela
         for freqs in range(len(freq_master[energies])):
             for wavenumber_in in range(round(float(freq_master[energies][freqs]))-300,round(float(freq_master[energies][freqs]))+300):
                 if wavenumber_in in v_range:
-                    i_range[v_range.index(wavenumber_in)] += (1/(1+((wavenumber_in-freq_master[energies][freqs])/HWHM)**2)*float(inten_master[energies][freqs]))
+                    i_range[v_range.index(wavenumber_in)] += (1/(1+((wavenumber_in-float(freq_master[energies][freqs]))/HWHM)**2)*float(inten_master[energies][freqs]))
 
         if relative == 0:
             i_range[:] = ['%3f' % (x/max(i_range)) for x in i_range] #Make all values relative
