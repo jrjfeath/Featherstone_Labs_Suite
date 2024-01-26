@@ -216,15 +216,26 @@ def Extract_Harmonic(self,directory,log_files,freqmin,freqmax,HWHM,stepsize,rela
             else:
                 console_info += os.path.basename(file)+' does not contain any usable freqency data.\n'
             i+=1
-        elif file.endswith('tsv'):
-            for line in lines[1:]:
-                line = line.split()
-                freq.append(float(line[0]))
-                inten.append(line[1])
-            inten_master.append(inten)
-            freq_master.append(freq)
-            file_master.append(file)
-            energy_master.append(0)
+        elif file.endswith('.out'):
+            start = 0
+            end = 0
+            for x in range (len(lines)):
+                if "IR SPECTRUM" in lines[x]:
+                    start = x
+                if "* The epsilon (eps) is given for a Dirac delta lineshape." in lines[x]:
+                    end = x    
+            raw_spec = lines[start+6:end-1]
+            for row in range(len(raw_spec)):
+                temp = raw_spec[row].split()
+                freq.append(float(temp[1]))
+                inten.append(temp[3])
+            if len(freq) != 0:
+                freq_master.append(freq)
+                inten_master.append(inten)
+                energy_master.append(0)
+                file_master.append(file)
+            else:
+                console_info += os.path.basename(file)+' does not contain any usable freqency data.\n'
     if len(freq_master) == 0: #If no frequency files found ditch process
         console_info += 'Process aborted, no frequency files found.'
         self.ui.Console.setPlainText(console_info)
