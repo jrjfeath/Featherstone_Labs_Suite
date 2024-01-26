@@ -8,7 +8,7 @@ from SPE import check_file_closed
 def spectrum(self):
     directory = self.check_directory(self.ui.t2t3LE_1.text())
     if directory:
-        log_files = [os.path.join(directory,f) for f in os.listdir(directory) if f.lower().endswith('.log') or f.lower().endswith('.tsv')] #Get logs in directory 
+        log_files = [os.path.join(directory,f) for f in os.listdir(directory) if f.lower().endswith('.log') or f.lower().endswith('.out')] #Get logs in directory 
         freqmin = self.ui.t2t3SB_2.value()
         freqmax = self.ui.t2t3SB_3.value()
         HWHM = self.ui.t2t3SB_4.value()
@@ -182,7 +182,7 @@ def Extract_Harmonic(self,directory,log_files,freqmin,freqmax,HWHM,stepsize,rela
     console_info = 'Beginning process, '+str(len(log_files))+' files to analyze.\n'
     self.ui.Console.setPlainText(console_info)  
     for file in log_files: #Run process for each log
-        self.ui.progressBar.setValue(((i+1)/len(log_files))*100) #Set run number to value *2 of total logs
+        self.ui.progressBar.setValue(int((i+1)/len(log_files))*100) #Set run number to value *2 of total logs
         freq=[]
         inten=[]
         ZPE_correct = ''
@@ -216,6 +216,7 @@ def Extract_Harmonic(self,directory,log_files,freqmin,freqmax,HWHM,stepsize,rela
             else:
                 console_info += os.path.basename(file)+' does not contain any usable freqency data.\n'
             i+=1
+<<<<<<< Updated upstream
         elif file.endswith('tsv'):
             for line in lines[1:]:
                 line = line.split()
@@ -225,6 +226,29 @@ def Extract_Harmonic(self,directory,log_files,freqmin,freqmax,HWHM,stepsize,rela
             freq_master.append(freq)
             file_master.append(file)
             energy_master.append(0)
+=======
+        elif file.endswith('.out'):
+            start = 0
+            end = 0
+            spec = []
+            for x in range (len(lines)):
+                if "IR SPECTRUM" in lines[x]:
+                    start = x
+                if "* The epsilon (eps) is given for a Dirac delta lineshape." in lines[x]:
+                    end = x    
+            raw_spec = lines[start+6:end-1]
+            for row in range(len(raw_spec)):
+                temp = raw_spec[row].split()
+                freq.append(float(temp[1]))
+                inten.append(float(temp[3]))
+            if len(freq) != 0:
+                freq_master.append(freq)
+                inten_master.append(inten)
+                energy_master.append(0)
+                file_master.append(file)
+            else:
+                console_info += os.path.basename(file)+' does not contain any usable freqency data.\n'
+>>>>>>> Stashed changes
     if len(freq_master) == 0: #If no frequency files found ditch process
         console_info += 'Process aborted, no frequency files found.'
         self.ui.Console.setPlainText(console_info)
@@ -236,7 +260,7 @@ def Extract_Harmonic(self,directory,log_files,freqmin,freqmax,HWHM,stepsize,rela
     workbook=xlsxwriter.Workbook(xlsxname)
     i=0
     for energies in range(len(energy_master)):
-        self.ui.progressBar.setValue(((i+1)/len(energy_master))*100)
+        self.ui.progressBar.setValue(int((i+1)/len(energy_master))*100)
         filename = os.path.basename(file_master[energies])[:-4]
         if len(filename) < 30:
             filename = filename.translate({ord(c): None for c in '[]:*?/\!@#$'})
