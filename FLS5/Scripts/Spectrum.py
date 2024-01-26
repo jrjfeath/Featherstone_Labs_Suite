@@ -220,7 +220,7 @@ def Extract_Harmonic(self,directory,log_files,freqmin,freqmax,HWHM,stepsize,rela
             for line in lines[1:]:
                 line = line.split()
                 freq.append(float(line[0]))
-                inten.append(float(line[1]))
+                inten.append(line[1])
             inten_master.append(inten)
             freq_master.append(freq)
             file_master.append(file)
