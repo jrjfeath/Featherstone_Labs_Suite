@@ -6,8 +6,8 @@ import numpy as np
 from numpy import dot
 from numpy.linalg import norm
 
-from Rearrange_Molecules import GEOM
-from connectivity import find_connectivity
+from Scripts.Rearrange_Molecules import GEOM
+from Scripts.connectivity import find_connectivity
 
 def determine_similarity(self):
     #Check if user has specified a valid directory

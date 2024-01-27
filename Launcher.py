@@ -1,19 +1,13 @@
 '''Checks if the user has the required python packages and launches if true.'''
 
-import importlib
 import os
-import subprocess
+import importlib
 import sys
 
 from pathlib import Path
 
-CWD = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(os.path.join(CWD, 'Scripts'))
-sys.path.append(os.path.join(CWD, 'Icons'))
-sys.path.append(os.path.join(CWD, 'Launch'))
-
 #Required Packages to run the script, ask user to install if not present
-rp = ['PyQt5','numpy','xlsxwriter','git']
+rp = ['PyQt6','numpy','xlsxwriter','git']
 for package in rp:
     try: globals()[package] = importlib.import_module(package)
     except (ModuleNotFoundError,ImportError) as e:
@@ -42,5 +36,5 @@ for package in rp:
                 os.system(f'pip install {package}')
 
 #If user can load all libraries load GUI
-from Launch_PyQt5 import main
+from Launch.Launch_PyQt import main
 main()

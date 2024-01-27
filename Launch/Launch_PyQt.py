@@ -7,24 +7,23 @@ import sys
 
 from pathlib import Path
 
-from FLS_5 import Ui_MainWindow
-from GUI_Triggered import GUI_Calls
-from Preferences import Root_Path, set_basis, Load_Preferences
+from .GUI_Triggered import GUI_Calls
+from .Preferences import Root_Path, set_basis, Load_Preferences
 
 import git
 
-from PyQt5 import QtWidgets
-from PyQt5 import QtCore
-from PyQt5 import QtGui
+from PyQt6 import uic, QtWidgets, QtCore, QtGui
 
 path = Path(os.path.dirname(os.path.realpath(__file__)))
 Icon_Path = os.path.join(os.path.split(path)[0],'icons')
 
+#filename for the ui file
+uifn = f"{path}/FLS.ui"
+
 class AppWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
+        self.ui = uic.loadUi(uifn,self)
         Load_Preferences(self)
         QtWidgets.QApplication.setStyle(QtWidgets.QStyleFactory.create('cleanlooks'))
         app_icon = QtGui.QIcon()
@@ -81,8 +80,8 @@ class AppWindow(QtWidgets.QMainWindow):
     def close_application(self): #Exit alert for user
         choice_title = 'Exit Confirmation'
         choice_prompt = 'Are you sure you wish to close McMahon Suite?'
-        choice = QtWidgets.QMessageBox.question(self, choice_title, choice_prompt, QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-        if choice == QtWidgets.QMessageBox.Yes:
+        choice = QtWidgets.QMessageBox.question(self, choice_title, choice_prompt, QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+        if choice == QtWidgets.QMessageBox.StandardButton.Yes:
             sys.exit()
 
     def closeEvent(self, event):
@@ -126,8 +125,8 @@ class AppWindow(QtWidgets.QMainWindow):
         
         choice_title = 'Update Available'
         choice_prompt = 'An update is available, would you like to update?'
-        choice = QtWidgets.QMessageBox.question(self, choice_title, choice_prompt, QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-        if choice == QtWidgets.QMessageBox.Yes:
+        choice = QtWidgets.QMessageBox.question(self, choice_title, choice_prompt, QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+        if choice == QtWidgets.QMessageBox.StandardButton.Yes:
             #Updating in windows
             if os.getenv('APPDATA') != None:
                 with open(Path(f'{root}/update.py'),'w') as opf:
@@ -152,7 +151,7 @@ class AppWindow(QtWidgets.QMainWindow):
 def main():
     app = QtWidgets.QApplication(sys.argv)
     w = AppWindow()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 
 sys._excepthook = sys.excepthook 
 def exception_hook(exctype, value, traceback):

@@ -1,18 +1,18 @@
 #Tab 1
-from Input_Generator import extract_input
-from rename import rename_files
-from mass_weighted_comparison import determine_similarity
+from Scripts.Input_Generator import extract_input
+from Scripts.rename import rename_files
+from Scripts.mass_weighted_comparison import determine_similarity
 
 #Tab 2
-from SPE import Extract_SPE
-from Thermo import Extract_Thermo
-from Spectrum import spectrum
-from rotate_gjf import rotate_gjf
-from Mass_Properties import Mass_Props
-from Temperature_Analysis import analyze_temperature
+from Scripts.SPE import Extract_SPE
+from Scripts.Thermo import Extract_Thermo
+from Scripts.Spectrum import spectrum
+from Scripts.rotate_gjf import rotate_gjf
+from Scripts.Mass_Properties import Mass_Props
+from Scripts.Temperature_Analysis import analyze_temperature
 
 #Tab 3
-from Preferences import preferences
+from .Preferences import preferences
 
 def submit_button(self):
     pt_index = self.ui.tabWidget.currentIndex()

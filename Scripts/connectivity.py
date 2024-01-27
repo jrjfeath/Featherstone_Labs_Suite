@@ -1,9 +1,6 @@
-import os
-import sys 
-
 import numpy as np
 
-from Atom_Info import chemical_symbols, atomic_masses_legacy, covalent_radii
+from Scripts.Atom_Info import chemical_symbols, atomic_masses_legacy, covalent_radii
 
 def find_connectivity(labels,xyz):
     '''Determine connectivity and return com of main group.'''

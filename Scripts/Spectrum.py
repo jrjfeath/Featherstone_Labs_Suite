@@ -3,7 +3,7 @@ import re
 
 import xlsxwriter
 
-from SPE import check_file_closed
+from Scripts.SPE import check_file_closed
 
 def spectrum(self):
     directory = self.check_directory(self.ui.t2t3LE_1.text())

@@ -1,9 +1,6 @@
-import copy
-import time
-
 import numpy as np
 
-import Atom_Info as AI
+import Scripts.Atom_Info as AI
 
 class GEOM:
     def __init__(self,geom):

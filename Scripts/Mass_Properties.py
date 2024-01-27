@@ -1,14 +1,11 @@
 import os
 import re
-import sys
 import time
 
 from math import sqrt
 
-import numpy as np
-
-from Atom_Info import chemical_symbols, atomic_masses_legacy
-from SPE import check_file_closed
+from Scripts.Atom_Info import chemical_symbols, atomic_masses_legacy
+from Scripts.SPE import check_file_closed
 
 def Mass_Props(self):
 	directory = self.check_directory(self.ui.t2t5LE_1.text())

@@ -1,7 +1,7 @@
 import os
 import re
 import time
-from Atom_Info import *
+from Scripts.Atom_Info import *
 
 def extract_input(self,tab):
     files = []
