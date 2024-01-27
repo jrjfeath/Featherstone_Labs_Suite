@@ -63,8 +63,8 @@ def orca_thermo(data,filename, CInfo):
         ar["Zero-point Correction"] = find_energy("Zero point energy")*2625.5
         ar["Zero-point Energy"] = ar["Electronic Energy"] + ar["Zero-point Correction"]
         ar['Thermal Correction to Energy'] = find_energy("Total correction")*2625.5
-        ar["Thermal Correction to Enthalpy"] = find_energy("Thermal Enthalpy correction")*2625.5
-        ar["Thermal Correction to Free Energy"] = find_energy("Total entropy correction")*2625.5
+        ar["Thermal Correction to Enthalpy"] = ar['Thermal Correction to Energy'] + find_energy("Thermal Enthalpy correction")*2625.5
+        ar["Thermal Correction to Free Energy"] = ar["Free Energy"] - ar["Electronic Energy"]
         ar["Multiplicity"] = find_energy("Multiplicity           Mult")
     except IndexError: 
         CInfo += f'Error in {filename}.'
