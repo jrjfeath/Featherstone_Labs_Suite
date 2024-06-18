@@ -91,16 +91,6 @@ class AppWindow(QtWidgets.QMainWindow):
         self.close_application() #Call the exit prompt
 
     def Update(self,Launch):
-        repo_url = 'https://github.com/jrjfeath/Featherstone_Labs_Suite'
-
-        #Windows has special permissions on read-only folders
-        def handleRemoveReadonly(func, path, exc):
-            excvalue = exc[1]
-            if func in (os.rmdir, os.unlink, os.remove) and excvalue.errno == errno.EACCES:
-                os.chmod(path, stat.S_IRWXU| stat.S_IRWXG| stat.S_IRWXO) # 0777
-                func(path)
-            else: #unable to modify folder.
-                pass
         
         def get_latest_commit():
             '''Check the sha of the latest commit without cloning.'''
@@ -125,22 +115,24 @@ class AppWindow(QtWidgets.QMainWindow):
                     'url': None,
                     'error': response.status_code
                 }
-
         # Get parent directory of script 
         parent_path = os.path.split(path)[0]
         # Create a path to download the git files to
         root = os.path.expanduser('~')
         git_path  = os.path.join(root,'FLS5')
-        # Remove any pre-existing git files if they exist
-        try: shutil.rmtree(git_path, ignore_errors=False, onexc=handleRemoveReadonly)
-        except FileNotFoundError: pass 
 
         repo = get_latest_commit()
         if repo['error'] != None:
             self.ui.Console.setPlainText(f'Unable to access github, requests error: {repo['error']}')
-            return          
+            return
 
-        with open(Path(f'{git_path}/ID.txt'),'r') as opf:
+        id_file = Path(f'{parent_path}/ID.txt')
+        # Check if an ID file exists, if it doesnt make one
+        if not os.path.isfile(id_file):
+            with open(id_file,'w') as opf:
+                opf.write(repo['sha'])
+
+        with open(id_file,'r') as opf:
             local_id = opf.read().strip()
 
         if repo['sha'] == local_id: #If the ids match then no changes
@@ -151,11 +143,17 @@ class AppWindow(QtWidgets.QMainWindow):
         choice_prompt = 'An update is available, would you like to update?'
         choice = QtWidgets.QMessageBox.question(self, choice_title, choice_prompt, QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
         if choice == QtWidgets.QMessageBox.StandardButton.Yes:
+            # Remove any pre-existing git files if they exist
+            try: shutil.rmtree(git_path, ignore_errors=False)
+            except FileNotFoundError: pass 
             #Try to download github repo
+            repo_url = 'https://github.com/jrjfeath/Featherstone_Labs_Suite'
             try: git.Repo.clone_from(repo_url, git_path, branch='master')
             except: #Not sure of actual except handle
                 self.ui.Console.setPlainText('Unable to access github, do you have an internet connection?')
                 return
+            with open(id_file,'w') as opf: #Update ID
+                opf.write(repo['sha'])
 
             #Updating on windows
             if platform.system() == 'Windows':
@@ -163,8 +161,6 @@ class AppWindow(QtWidgets.QMainWindow):
                     opf.write('import shutil\n')
                     opf.write('import subprocess\n')
                     opf.write('from distutils.dir_util import copy_tree\n')
-                    opf.write(f'with open(r"{git_path}/ID.txt","w") as opf:\n') #Update ID
-                    opf.write(f'   opf.write("{repo['sha']}")\n')
                     opf.write(f'copy_tree(r"{git_path}",r"{parent_path}")\n') #Move new files
                     opf.write(f'shutil.rmtree(r"{git_path},ignore_errors=True)\n') #Delete old files
                     opf.write(f'subprocess.Popen(r"{git_path}/Launcher.py",shell=True)')
@@ -172,8 +168,6 @@ class AppWindow(QtWidgets.QMainWindow):
                 sys.exit() 
             #Updating on Linux
             else:
-                with open(f'{git_path}/ID.txt','w') as opf: #Update ID
-                    opf.write(repo['sha'])
                 shutil.move(git_path,parent_path) #Move new files
                 shutil.rmtree(git_path,ignore_errors=True) #Delete old files
                 sys.exit()

@@ -75,7 +75,7 @@ def gaussian_thermo(Type,text,filename,CInfo):
     def find_energy(string):
         nonlocal CInfo
         value = 0
-        if string == "Zero-point correction=": end_string = '\('
+        if string == "Zero-point correction=": end_string = r'\('
         else: end_string = "\n"
         try: value = float(re.findall(f'{string}(.*?){end_string}',text)[0].strip())
         except IndexError: CInfo += f'Unable to find {string} in {filename}'
