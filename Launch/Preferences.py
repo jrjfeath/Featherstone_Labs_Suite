@@ -1,18 +1,11 @@
 import os
+import platform
 
 from pathlib import Path
 
-def Root_Path():
-    Root = os.getenv('APPDATA')
-    if Root == None:
-        Root = os.getenv('HOME')
-    path = os.path.join(Root,'FLS5')
-    if os.path.isdir(path) == False:
-        os.mkdir(path)
-    return Path(path)
+path = Path(os.path.dirname(os.path.realpath(__file__)))
 
 def preferences(self):
-    path = Root_Path()
     String = str(self.ui.t3PQB_1.currentIndex())+'\n'
     String += str(self.ui.t3PQB_2.currentIndex())+'\n'
     String += str(self.ui.t3PQB_3.currentIndex())+'\n'
@@ -29,7 +22,6 @@ def preferences(self):
     Load_Preferences(self)
 
 def Load_Preferences(self):
-    path = Root_Path()
     #If the user has never launched the program before
     if os.path.isfile(os.path.join(path,'Preference.txt')) == False:
         preferences(self)

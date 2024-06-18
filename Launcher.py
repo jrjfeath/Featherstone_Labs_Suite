@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 #Required Packages to run the script, ask user to install if not present
-rp = ['PyQt6','numpy','xlsxwriter','git']
+rp = ['PyQt6','numpy','xlsxwriter','git','requests']
 for package in rp:
     try: globals()[package] = importlib.import_module(package)
     except (ModuleNotFoundError,ImportError) as e:

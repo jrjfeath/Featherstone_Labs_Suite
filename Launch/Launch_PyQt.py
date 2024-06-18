@@ -1,5 +1,6 @@
 import errno
 import os
+import platform
 import shutil
 import stat
 import subprocess
@@ -8,9 +9,10 @@ import sys
 from pathlib import Path
 
 from .GUI_Triggered import GUI_Calls
-from .Preferences import Root_Path, set_basis, Load_Preferences
+from .Preferences import set_basis, Load_Preferences
 
 import git
+import requests
 
 from PyQt6 import uic, QtWidgets, QtCore, QtGui
 
@@ -38,8 +40,8 @@ class AppWindow(QtWidgets.QMainWindow):
         self.ui.t1t4pb.clicked.connect(lambda: self.file_open('*.csv','t1t4pb'))
         self.ui.action_Check_for_updates.triggered.connect(lambda: self.Update(1))
         self.ui.t2t2CB_3.currentIndexChanged.connect(lambda: self.enable_relative())
-        Root = os.getenv('APPDATA')
-        if Root == None:
+        git_path = os.getenv('APPDATA')
+        if git_path == None:
             font = QtGui.QFont()
             #font.setPointSize(8)
             font.setBold(False)
@@ -100,52 +102,80 @@ class AppWindow(QtWidgets.QMainWindow):
             else: #unable to modify folder.
                 pass
         
-        #Delete temp directory or git download fails
-        root = Root_Path()
-        try: shutil.rmtree(Path(f'{root}/Temp'), ignore_errors=False, onerror=handleRemoveReadonly)
-        except FileNotFoundError: pass 
-        
-        #Try to download github repo
-        try: repo = git.Repo.clone_from(repo_url, Path(f'{root}/Temp'), branch='master')
-        except: #Not sure of actual except handle
-            self.ui.Console.setPlainText('Unable to access github, do you have an internet connection?')
-            return
-        repo_id = repo.head.object.hexsha
+        def get_latest_commit():
+            '''Check the sha of the latest commit without cloning.'''
+            url = f"https://api.github.com/repos/jrjfeath/Featherstone_Labs_Suite/commits"
+            response = requests.get(url)
+            if response.status_code == 200:
+                commits = response.json()
+                latest_commit = commits[0]
+                commit_sha = latest_commit['sha']
+                commit_message = latest_commit['commit']['message']
+                commit_url = latest_commit['html_url']
+                return {
+                    'sha': commit_sha,
+                    'message': commit_message,
+                    'url': commit_url,
+                    'error': None
+                }
+            else:
+                return {
+                    'sha': None,
+                    'message': None,
+                    'url': None,
+                    'error': response.status_code
+                }
 
-        with open(Path(f'{path}/ID.txt'),'r') as opf:
+        # Get parent directory of script 
+        parent_path = os.path.split(path)[0]
+        # Create a path to download the git files to
+        root = os.path.expanduser('~')
+        git_path  = os.path.join(root,'FLS5')
+        # Remove any pre-existing git files if they exist
+        try: shutil.rmtree(git_path, ignore_errors=False, onexc=handleRemoveReadonly)
+        except FileNotFoundError: pass 
+
+        repo = get_latest_commit()
+        if repo['error'] != None:
+            self.ui.Console.setPlainText(f'Unable to access github, requests error: {repo['error']}')
+            return          
+
+        with open(Path(f'{git_path}/ID.txt'),'r') as opf:
             local_id = opf.read().strip()
 
-        if repo_id == local_id: #If the ids match then no changes
+        if repo['sha'] == local_id: #If the ids match then no changes
             if Launch != 0: self.ui.Console.setPlainText('No update is currently available.')
             return
-
-        #Safely find top directory of github files
-        subdir=os.path.split(path)[0]
-        topdir=os.path.split(subdir)[0]
         
         choice_title = 'Update Available'
         choice_prompt = 'An update is available, would you like to update?'
         choice = QtWidgets.QMessageBox.question(self, choice_title, choice_prompt, QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
         if choice == QtWidgets.QMessageBox.StandardButton.Yes:
-            #Updating in windows
-            if os.getenv('APPDATA') != None:
-                with open(Path(f'{root}/update.py'),'w') as opf:
+            #Try to download github repo
+            try: git.Repo.clone_from(repo_url, git_path, branch='master')
+            except: #Not sure of actual except handle
+                self.ui.Console.setPlainText('Unable to access github, do you have an internet connection?')
+                return
+
+            #Updating on windows
+            if platform.system() == 'Windows':
+                with open(Path(f'{git_path}/update.py'),'w') as opf:
                     opf.write('import shutil\n')
                     opf.write('import subprocess\n')
                     opf.write('from distutils.dir_util import copy_tree\n')
-                    opf.write(f'shutil.rmtree(r"{topdir}/FLS5",ignore_errors=True)\n') #Delete old files
-                    opf.write(f'copy_tree(r"{root}/Temp/FLS5",r"{topdir}/FLS5")\n') #Move new files
-                    opf.write(f'with open(r"{path}/ID.txt","w") as opf:\n') #Update ID
-                    opf.write(f'   opf.write("{repo_id}")\n')
-                    opf.write(f'subprocess.Popen(r"{topdir}/FLS5/Launcher.py",shell=True)')
-                subprocess.Popen(f'{root}/update.py',shell=True)
+                    opf.write(f'with open(r"{git_path}/ID.txt","w") as opf:\n') #Update ID
+                    opf.write(f'   opf.write("{repo['sha']}")\n')
+                    opf.write(f'copy_tree(r"{git_path}",r"{parent_path}")\n') #Move new files
+                    opf.write(f'shutil.rmtree(r"{git_path},ignore_errors=True)\n') #Delete old files
+                    opf.write(f'subprocess.Popen(r"{git_path}/Launcher.py",shell=True)')
+                subprocess.Popen(f'{git_path}/update.py',shell=True)
                 sys.exit() 
             #Updating on Linux
             else:
-                shutil.rmtree(topdir) #Delete old files
-                shutil.move(f'{root}/Temp',topdir) #Move new files
-                with open(f'{path}/ID.txt','w') as opf: #Update ID
-                    opf.write(repo_id)
+                with open(f'{git_path}/ID.txt','w') as opf: #Update ID
+                    opf.write(repo['sha'])
+                shutil.move(git_path,parent_path) #Move new files
+                shutil.rmtree(git_path,ignore_errors=True) #Delete old files
                 sys.exit()
 
 def main():
