@@ -2,6 +2,19 @@ import numpy as np
 
 from Scripts.Atom_Info import chemical_symbols, atomic_masses_legacy, covalent_radii
 
+def Distance(Group,mcom):
+    '''Find the distance between a group of coordinates and a center.'''
+    dist = (Group-mcom)**2
+    dist = dist.sum(axis=-1)
+    dist = np.sqrt(dist)
+    return dist
+
+def search(connectivity,atom,molecule):
+    for x in connectivity[atom]:
+        if x in connectivity.keys(): search(connectivity,x,molecule)
+        if x not in molecule: molecule.append(x)
+    return molecule
+
 def find_connectivity(labels,xyz):
     '''Determine connectivity and return com of main group.'''
     covalent = {}
@@ -19,31 +32,18 @@ def find_connectivity(labels,xyz):
             bond_lengths[label1+label2] = bl
             if bl > maximum: maximum = bl
 
-    def Distance(Group,mcom):
-        '''Find the distance between a group of coordinates and a center.'''
-        dist = (Group-mcom)**2
-        dist = dist.sum(axis=-1)
-        dist = np.sqrt(dist)
-        return dist
-
     connectivity = {}
     for index, atom in enumerate(xyz):
         Dists = Distance(xyz[index+1:],atom)
         PB = np.argwhere(Dists<maximum) #Get distances shorter than maximum
         con = []
         for di in PB: #For distance index in passing bonds
-            key = ''.join(sorted(labels[index]+labels[index+di[0]+1]))
+            key = ''.join(sorted([labels[index],labels[index+di[0]+1]]))
             bl = bond_lengths[key]
             if Dists[di] < bl: con.append(index+di[0]+2) #add one because of skip and another to match gaussian labels
         if len(con) > 0: connectivity[index+1] = con
 
     molecules = []
-
-    def search(connectivity,atom,molecule):
-        for x in connectivity[atom]:
-            if x in connectivity.keys(): search(connectivity,x,molecule)
-            if x not in molecule: molecule.append(x)
-        return molecule
 
     molecule = []
     for x in connectivity.keys():

@@ -1,0 +1,14 @@
+0
+0
+0
+jrjfeath
+# opt pm7
+8
+4500
+1
+1
+# opt pm7
+# opt=tight hf/6-31g
+# opt b3lyp/6-311++G(d,p)
+# freq b3lyp/6-311++G(d,p)
+# opt freq b3lyp/6-311++G(d,p)

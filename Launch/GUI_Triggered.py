@@ -23,9 +23,9 @@ def submit_button(self):
         if ct_index == 1:
             extract_input(self,1)
         if ct_index == 2:
-            rename_files(self)
-        if ct_index == 3:
             determine_similarity(self)
+        if ct_index == 3:
+            rename_files(self)
     if pt_index == 1:
         ct_index = self.ui.tabWidget_3.currentIndex()
         if ct_index == 0:

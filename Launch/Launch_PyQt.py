@@ -123,7 +123,7 @@ class AppWindow(QtWidgets.QMainWindow):
 
         repo = get_latest_commit()
         if repo['error'] != None:
-            self.ui.Console.setPlainText(f'Unable to access github, requests error: {repo['error']}')
+            self.ui.Console.setPlainText(f"Unable to access github, requests error: {repo['error']}")
             return
 
         id_file = Path(f'{parent_path}/ID.txt')
