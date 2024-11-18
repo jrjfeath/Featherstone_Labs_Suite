@@ -2,6 +2,7 @@
 
 import os
 import importlib
+import subprocess
 import sys
 
 from pathlib import Path
@@ -33,7 +34,16 @@ for package in rp:
                 #gitpython imports as git, annoying I know
                 if package == 'git':
                     package = 'gitpython'
-                os.system(f'pip install {package}')
+                if package == 'thermoanalysis':
+                    # URL for thermoanalysis
+                    repo_url = f"git+https://github.com/eljost/thermoanalysis.git"
+                    # Install directly from GitHub
+                    subprocess.run(["pip", "install", repo_url])
+                else:
+                    #gitpython imports as git, annoying I know
+                    if package == 'git':
+                        package = 'gitpython'
+                    os.system(f'pip install {package}')
 
 #If user can load all libraries load GUI
 from Launch.Launch_PyQt import main
