@@ -1,0 +1,8 @@
+gitpython
+numpy
+matplotlib
+pyqt6
+pyqtgraph
+requests
+git+https://github.com/eljost/thermoanalysis.git
+xlsxwriter
