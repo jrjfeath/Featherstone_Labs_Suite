@@ -56,14 +56,14 @@ def orca_thermo(data,filename, CInfo):
     }
 
     try:
-        ar["Electronic Energy"] = find_energy("Electronic energy")*2625.5
-        ar["Enthalpy"] = find_energy("Total Enthalpy")*2625.5
-        ar["Free Energy"] = find_energy("Final Gibbs free energy")*2625.5
-        ar["Entropy"]= find_energy("Final entropy term")*4.184
-        ar["Zero-point Correction"] = find_energy("Zero point energy")*2625.5
+        ar["Electronic Energy"] = find_energy("Electronic energy")
+        ar["Enthalpy"] = find_energy("Total Enthalpy")
+        ar["Free Energy"] = find_energy("Final Gibbs free energy")
+        ar["Entropy"]= find_energy("Final entropy term")*4.184 # fine to keep this in J/molK
+        ar["Zero-point Correction"] = find_energy("Zero point energy")
         ar["Zero-point Energy"] = ar["Electronic Energy"] + ar["Zero-point Correction"]
-        ar['Thermal Correction to Energy'] = find_energy("Total correction")*2625.5
-        ar["Thermal Correction to Enthalpy"] = ar['Thermal Correction to Energy'] + find_energy("Thermal Enthalpy correction")*2625.5
+        ar['Thermal Correction to Energy'] = find_energy("Total correction")
+        ar["Thermal Correction to Enthalpy"] = ar['Thermal Correction to Energy'] + find_energy("Thermal Enthalpy correction")
         ar["Thermal Correction to Free Energy"] = ar["Free Energy"] - ar["Electronic Energy"]
         ar["Multiplicity"] = find_energy("Multiplicity           Mult")
     except IndexError: 
@@ -79,7 +79,7 @@ def gaussian_thermo(Type,text,filename,CInfo):
         else: end_string = "\n"
         try: value = float(re.findall(f'{string}(.*?){end_string}',text)[0].strip())
         except IndexError: CInfo += f'Unable to find {string} in {filename}'
-        return value * 2625.5 #Convert from hartrees to kJ/mol
+        return value 
 
     Thermo_Pass = []
     if Type == 'Completed': #If user does not want to use failed jobs
@@ -177,11 +177,11 @@ def extract(self,Type,files,directory):
         for value in values: String+=f'{Thermo_Data[key][value]},' #write each value to string
         String = String[:-1] #Remove trailing comma
         
-        #If the user selects relative values
+        #If the user selects relative values - these ones in kJ/mol :)
         if DPI != 0 and self.ui.t2t2CB_4.currentIndex() == 1: 
-            String += f',{Thermo_Data[key]["Thermal Energy"] - minimum["Thermal Energy"]}'
-            String += f',{Thermo_Data[key]["Enthalpy"] - minimum["Enthalpy"]}'
-            String += f',{Thermo_Data[key]["Free Energy"] - minimum["Free Energy"]}'
+            String += f',{Thermo_Data[key]["Thermal Energy"] - minimum["Thermal Energy"] * 2625.5}'
+            String += f',{Thermo_Data[key]["Enthalpy"] - minimum["Enthalpy"] * 2625.5 }'
+            String += f',{Thermo_Data[key]["Free Energy"] - minimum["Free Energy"] * 2625.5}'
         
         String+='\n'
 
